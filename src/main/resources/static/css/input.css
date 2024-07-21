@@ -1,3 +1,108 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer components{
+  h3{
+    color:#212529;
+    font-weight: 700;
+    font-size:18px;
+  }
+  
+  h2{
+      color:#333333;
+      font-size:40px;
+      font-weight:700;
+  }
+  
+  p{
+      color:#626262;
+      font-size:16px;
+  }
+  
+  .fleet-button,.addservices-button,.alloffices-button{
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #a5dfa2;
+      margin-top: 20px;
+      border-radius: 30px;
+      color:#1ECB15;
+      width: 200px;
+      height: 45px;
+      font-size: 16px;
+      font-weight: 600;
+  
+  }
+  
+  .fleet-button:hover,.addservices-button:hover,.alloffices-button:hover{
+      border-color:#1ECB15;
+  }
+  
+  .fleet-button svg, .addservices-button svg, .alloffices-button svg {
+      margin-left:10px;
+      margin-top:2px;
+  
+  }
+  
+  /*carousel*/
+  .carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+    .carousel-inner {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .carousel-item {
+      min-width: 33.3%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .car-image {
+      width: 80%;
+      height: auto;
+    }
+    .car-info {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .car-price {
+      font-size: 1.2em;
+      color: #000;
+    }
+    .book-now-btn {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #a5dfa2;
+      margin-top: 20px;
+      padding-left: 60px;
+      border-radius: 30px;
+      color:#1ECB15;
+      width: 200px;
+      height: 45px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .book-now-btn:hover {
+      background-color: #1ECB15;
+      color:#FFFFFF;
+    }
+    .carousel-button {
+      border-radius: 30px;
+      background-color: #1ECB15; 
+      padding: 10px; 
+      width: 40px; 
+      height: 40px; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carousel-button:hover {
+      background-color: #179510;
+    }
+}
+
+  
+

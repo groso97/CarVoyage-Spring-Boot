@@ -29,6 +29,7 @@ CREATE TABLE cars (
     status ENUM('available', 'rented') DEFAULT 'available',
     daily_rate DECIMAL(10, 2) NOT NULL,
     location_id int,
+    image VARCHAR(255) NOT NULL,
     FOREIGN KEY(location_id) REFERENCES location(location_id)
 );
 

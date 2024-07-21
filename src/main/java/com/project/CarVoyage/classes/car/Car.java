@@ -12,6 +12,8 @@ public class Car {
     private double dailyRate;
     private int locationId;
 
+    private String image;
+
     public int getCarId() {
         return carId;
     }
@@ -90,6 +92,14 @@ public class Car {
 
     public void setLocationId(int locationId) {
         this.locationId = locationId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
 }

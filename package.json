@@ -3,6 +3,10 @@
     "build": "tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --watch"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
     "tailwindcss": "^3.4.4"
+  },
+  "dependencies": {
+    "preline": "^2.3.0"
   }
 }

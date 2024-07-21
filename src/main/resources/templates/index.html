@@ -4,45 +4,394 @@
     <th:block
       th:insert="~{fragments/head :: head(title='CarVoyage')}"
     ></th:block>
+    <script th:src="@{/js/index.js}" defer></script>
   </head>
   <body>
     <th:block th:insert="~{fragments/header :: header}"></th:block>
-    <!-- Main Hero Content -->
-    <div
-      class="container max-w-sm py-32 mx-auto mt-px text-left sm:max-w-md md:max-w-lg sm:px-4 md:max-w-none md:text-center"
-    >
-      <h1
-        class="text-3xl font-bold leading-10 tracking-tight text-left text-gray-900 md:text-center sm:text-4xl md:text-7xl lg:text-8xl"
+    <div class="relative w-full h-[100dvh] overflow-hidden hero-video -mt-16">
+      <video
+        class="absolute top-0 left-0 w-full h-full object-cover"
+        autoplay
+        muted
+        loop
+        id="heroVideo"
       >
-        Start Crafting Your <br class="hidden sm:block" />
-        Next Great Idea
-      </h1>
+        <source src="img/hero-video3.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div
-        class="mx-auto mt-5 text-gray-400 md:mt-8 md:max-w-lg md:text-center md:text-xl"
+        class="relative z-10 flex flex-col items-center justify-center w-full h-full bg-black bg-opacity-50 pl-4 pr-4"
       >
-        Simplifying the creation of landing pages, blog pages, application pages
-        and so much more!
-      </div>
-      <div
-        class="flex flex-col items-center justify-center mt-8 space-y-4 text-center sm:flex-row sm:space-y-0 sm:space-x-4"
-      >
-        <span class="relative inline-flex w-full md:w-auto">
-          <a
-            href="#_"
-            class="inline-flex items-center justify-center w-full px-8 py-4 text-base font-medium leading-6 text-white bg-gray-900 border border-transparent rounded-full xl:px-10 md:w-auto hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800"
+        <h1
+          class="mt-[80px] text-[#FFFFFF] text-[60px] font-light text-center leading-[70px]"
+        >
+          <span class="text-[55px] font-bold">CARVOYAGE rent a car</span><br />
+          Your rent a car No1 in Croatia
+        </h1>
+
+        <div
+          class="bg-white w-[1000px] mt-[30px] rounded-[10px] p-[12px] flex flex-col"
+        >
+          <h3 class="text-[20px] text-[#333333] font-medium">
+            Find rent a car vehicle
+          </h3>
+
+          <form
+            action=""
+            name=""
+            method=""
+            class="w-full flex flex-col mt-[15px]"
           >
-            Purchase Now
-          </a>
-        </span>
-        <span class="relative inline-flex w-full md:w-auto">
-          <a
-            href="#_"
-            class="inline-flex items-center justify-center w-full px-8 py-4 text-base font-medium leading-6 text-gray-900 bg-gray-100 border border-transparent rounded-full xl:px-10 md:w-auto hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200"
-            >Learn More</a
-          >
-        </span>
+            <div class="flex">
+              <div class="flex flex-col w-1/2 mr-[10px]">
+                <label class="flex mb-[5px]" for="pick-up">
+                  <span class="text-[#1ECB15] align-middle mr-[2px]">*</span>
+                  Pick-up place
+                </label>
+                <select
+                  class="border-solid border-[2px] rounded-[5px] mt-[5px] h-[6dvh] pl-[5px]"
+                  id="pick-up"
+                >
+                  <option value="" selected>-------</option>
+                  <option>Zagreb</option>
+                  <option>Split</option>
+                  <option>Rijeka</option>
+                </select>
+              </div>
+
+              <div class="flex flex-col w-1/2 ml-[10px]">
+                <label class="flex mb-[5px]" for="date-time">
+                  <span class="text-[#1ECB15] align-middle mr-[2px]">*</span>
+                  Date and time of pick-up and drop-off
+                </label>
+                <input
+                  class="border-solid border-[2px] rounded-[5px] mt-[5px] h-[6dvh] pl-[5px]"
+                  type="datetime-local"
+                  id="date-time"
+                />
+              </div>
+            </div>
+            <button
+              type="button"
+              class="bg-[#1ECB15] hover:bg-green-600 transition-colors w-full mt-[20px] py-3 px-4 flex justify-center items-center gap-x-2 font-semibold rounded-lg border border-transparent text-white disabled:opacity-50 disabled:pointer-events-none"
+            >
+              Search<svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-    <!-- End Main Hero Content -->
+
+    <div
+      class="first-section w-full flex justify-center items-center bg-[#F9F9F9]"
+    >
+      <div class="container flex w-[1100px] h-[90dvh] justify-center mt-[10vh]">
+        <div class="service w-[1100px] text-center">
+          <h2>Simple and fast service</h2>
+
+          <div class="flex justify-center w-[1100px]">
+            <p class="w-[900px] mt-3">
+              Our service is designed to provide you with a sense of
+              carefreeness during vehicle rental and is fully tailored to your
+              needs. Find your perfect vehicle from the Last Minute vehicle
+              fleet and an unforgettable rental experience is guaranteed.
+            </p>
+          </div>
+          <hr
+            class="border-0 h-[3px] bg-[#EFEFEF] mt-[15px] mb-[10px] w-full"
+          />
+          <div
+            class="flex mx-auto w-[1100px] justify-between h-[80dvh] mt-[10vh] gap-[80px]"
+          >
+            <div class="flex flex-col items-center w-1/3 p-[10px]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="80"
+                height="80"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#1ECB15"
+                  d="M0 5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v2h-2V5H2v7h6v2H2v4h6v2H5.414L3.5 21.914L2.086 20.5l.5-.5H2a2 2 0 0 1-2-2zm11.323 3h10.354L24 13.807V21.5h-2V20H11v1.5H9v-7.693zM11 18h11v-3.807L21.923 14H11.077l-.077.193zm.877-6h9.246l-.8-2h-7.646zM3 15h2.004v2.004H3zm9 0h2.004v2.004H12zm7 0h2.004v2.004H19z"
+                />
+              </svg>
+              <p class="mt-[20px] text-[20px] font-semibold">
+                A wide range of vehicles
+              </p>
+              <p class="mt-[20px]">
+                Our extensive selection of vehicles caters to every need and
+                preference, from compact city cars to spacious family SUVs.
+                Whether you're looking for fuel efficiency, luxury, or rugged
+                off-road capabilities, we've got all you need.
+              </p>
+              <a href="#" class="fleet-button transition-colors">
+                Vehicle fleet
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="24"
+                  viewBox="0 0 12 24"
+                >
+                  <path
+                    fill="#1ECB15"
+                    fill-rule="evenodd"
+                    d="M10.157 12.711L4.5 18.368l-1.414-1.414l4.95-4.95l-4.95-4.95L4.5 5.64l5.657 5.657a1 1 0 0 1 0 1.414"
+                  />
+                </svg>
+              </a>
+            </div>
+            <div class="flex flex-col items-center w-1/3 p-[10px]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="80"
+                height="80"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#1ECB15"
+                  d="M14.121 10.48a1 1 0 0 0-1.414 0l-.707.706a2 2 0 0 1-2.828-2.828l5.63-5.632a6.5 6.5 0 0 1 6.377 10.568l-2.108 2.135zM3.161 4.468a6.5 6.5 0 0 1 8.009-.938L7.757 6.944a4 4 0 0 0 5.513 5.794l.144-.137l4.243 4.242l-4.243 4.243a2 2 0 0 1-2.828 0L3.16 13.66a6.5 6.5 0 0 1 0-9.192"
+                />
+              </svg>
+              <p class="mt-[20px] text-[20px] font-semibold">
+                Additional services
+              </p>
+              <p class="mt-[20px]">
+                We provide various additional services to enhance your trip,
+                including insurance options, child seats, GPS units, portable
+                WiFi, and 24/7 roadside assistance. These features ensure your
+                journey is comfortable, safe, and convenient.
+              </p>
+              <a href="#" class="addservices-button transition-colors"
+                >More info
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="24"
+                  viewBox="0 0 12 24"
+                >
+                  <path
+                    fill="#1ECB15"
+                    fill-rule="evenodd"
+                    d="M10.157 12.711L4.5 18.368l-1.414-1.414l4.95-4.95l-4.95-4.95L4.5 5.64l5.657 5.657a1 1 0 0 1 0 1.414"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <div class="flex flex-col items-center w-1/3 p-[10px]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="80"
+                height="80"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#1ECB15"
+                  d="M14.97 5.92a.967.967 0 0 0-1.18-.68l-3.4.91l-4.44-4.12l-1.23.33l2.66 4.59l-3.19.85l-1.26-.98l-.93.25l1.66 2.88l10.62-2.84c.52-.15.82-.68.69-1.19M21 10l-1 2h-5l-1-2l1-1h2V7h1v2h2zm1 10v2H2v-2h13v-7h5v7z"
+                />
+              </svg>
+              <p class="mt-[20px] text-[20px] font-semibold">
+                Branches in 3 airports
+              </p>
+              <p class="mt-[20px]">
+                We have branches conveniently located at major airports across
+                Croatia, including Split, Rijeka, and Zagreb. This allows you to
+                pick up and drop off your vehicle seamlessly, ensuring a
+                hassle-free travel experience from the moment you land.
+              </p>
+              <a href="#" class="alloffices-button transition-colors">
+                All offices
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="24"
+                  viewBox="0 0 12 24"
+                  style="vertical-align: middle; margin-right: 8px"
+                >
+                  <path
+                    fill="#1ECB15"
+                    fill-rule="evenodd"
+                    d="M10.157 12.711L4.5 18.368l-1.414-1.414l4.95-4.95l-4.95-4.95L4.5 5.64l5.657 5.657a1 1 0 0 1 0 1.414"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="second-section w-full flex justify-center items-center bg-[#FFFFFF]"
+    >
+      <div
+        class="second-container flex w-[1100px] h-[80dvh] justify-center mt-[10vh]"
+      >
+        <div class="vehicle-fleet w-[1100px] text-center">
+          <h2>Vehicle fleet</h2>
+
+          <div class="flex justify-center w-[1100px]">
+            <p class="w-[900px] mt-3">
+              Discover our diverse fleet of well-maintained vehicles. Whether
+              for business or leisure, reserve a vehicle that suits your needs
+              and enjoy top-quality service and comfort on every journey.
+            </p>
+          </div>
+          <hr
+            class="border-0 h-[3px] bg-[#EFEFEF] mt-[15px] mb-[10px] w-full"
+          />
+          <div class="carousel-wrapper relative max-w-full mx-auto mt-8">
+            <div class="carousel-inner flex">
+              <div
+                th:each="car : ${cars}"
+                class="carousel-item flex flex-col items-center"
+              >
+                <h3 th:text="${car.make + ' ' + car.model}"></h3>
+                <img
+                  th:src="${'/img/' + car.image}"
+                  th:alt="${car.make + ' ' + car.model}"
+                  class="car-image"
+                />
+                <div class="car-info">
+                  <p class="car-price">
+                    <span
+                      th:text="${#numbers.formatDecimal(car.dailyRate, 0, 0) + ' €'}"
+                      class="text-[#1ECB15] font-bold text-[24px]"
+                    ></span>
+                    / day
+                  </p>
+                  <button class="book-now-btn transition-colors">
+                    Book now
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Previous Button -->
+            <button
+              class="carousel-button absolute top-1/2 left-4 transform -translate-y-1/2"
+              id="prevBtn"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="24"
+                viewBox="0 0 12 24"
+                style="transform: rotate(180deg)"
+              >
+                <path
+                  fill="#FFFFFF"
+                  fill-rule="evenodd"
+                  d="M10.157 12.711L4.5 18.368l-1.414-1.414l4.95-4.95l-4.95-4.95L4.5 5.64l5.657 5.657a1 1 0 0 1 0 1.414"
+                />
+              </svg>
+            </button>
+            <!-- Next Button -->
+            <button
+              class="carousel-button absolute top-1/2 right-4 transform -translate-y-1/2"
+              id="nextBtn"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="24"
+                viewBox="0 0 12 24"
+                style="transform: rotate(180deg)"
+              >
+                <path
+                  fill="#FFFFFF"
+                  fill-rule="evenodd"
+                  d="M1.843 12.711l5.657 5.657l1.414-1.414l-4.95-4.95l4.95-4.95l-1.414-1.414l-5.657 5.657a1 1 0 0 0 0 1.414"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="third-section w-full flex justify-center items-center bg-[#F9F9F9]"
+    >
+      <div
+        class="third-container flex w-[1100px] h-[80dvh] justify-center mt-[10vh]"
+      >
+        <div class="rental-stations w-[1100px] text-center">
+          <h2>Rental stations</h2>
+
+          <div class="flex justify-center w-[1100px]">
+            <p class="w-[900px] mt-3">
+              Our car rental services are available in three major Croatian
+              cities: Zagreb, Rijeka, and Split. Whether you're traveling for
+              business or pleasure, we ensure you have a reliable and
+              comfortable vehicle at your disposal. Wherever you are, our team
+              of experts is available to provide information and support
+              throughout your rental period. Book your vehicle today and enjoy a
+              worry-free drive through beautiful Croatia!
+            </p>
+          </div>
+          <hr
+            class="border-0 h-[3px] bg-[#EFEFEF] mt-[15px] mb-[10px] w-full"
+          />
+          <div class="mt-[10vh] flex justify-center">
+            <div class="flex flex-col items-center w-1/3 p-[10px]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="80"
+                height="80"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="#1ECB15"
+                  d="M256 29c-17.3 0-34.7 1.98-48.1 5.68c-13.4 3.69-22 9.64-23.8 13.35c-29 57.97-30.9 130.57-31 178.97h205.8c-.1-48.4-2-121-31-178.97c-1.8-3.71-10.4-9.66-23.8-13.35C290.7 30.98 273.3 29 256 29M48 167v18h48v-18zm368 0v18h48v-18zM71 204v68.8l31.2 20.8c1.6-6 4.2-11.6 7.3-16.7L89 263.2V204zm352 0v59.2l-20.5 13.7c3.1 5.1 5.7 10.7 7.3 16.7l31.2-20.8V204zm-190 41v14h46v-14zm-100.9 32c-6.2 6.9-11.9 16.4-13.2 24.5c-1.5 8.7-.2 15.1 11.4 21.5h251.4c11.6-6.4 12.9-12.8 11.4-21.5c-1.3-8.1-7-17.6-13.2-24.5zM247 341v32l-121.2 30.3l4.4 17.4L247 391.5V420c2.9-.6 5.9-1 9-1s6.1.4 9 1v-28.5l116.8 29.2l4.4-17.4L265 373v-32zm-119 96c-12.8 0-23 10.2-23 23s10.2 23 23 23s23-10.2 23-23s-10.2-23-23-23m128 0c-12.8 0-23 10.2-23 23s10.2 23 23 23s23-10.2 23-23s-10.2-23-23-23m128 0c-12.8 0-23 10.2-23 23s10.2 23 23 23s23-10.2 23-23s-10.2-23-23-23"
+                />
+              </svg>
+              <h3 class="text-[#1ECB15] mt-[20px]">3 Offices</h3>
+            </div>
+            <div class="flex flex-col items-center w-1/3 p-[10px]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="80"
+                height="80"
+                viewBox="0 0 256 256"
+              >
+                <path
+                  fill="#1ECB15"
+                  d="M240 208h-8V88a8 8 0 0 0-8-8h-64a8 8 0 0 0-8 8v40h-48V40a8 8 0 0 0-8-8H32a8 8 0 0 0-8 8v168h-8a8 8 0 0 0 0 16h224a8 8 0 0 0 0-16M72 184a8 8 0 0 1-16 0v-16a8 8 0 0 1 16 0Zm0-48a8 8 0 0 1-16 0v-16a8 8 0 0 1 16 0Zm0-48a8 8 0 0 1-16 0V72a8 8 0 0 1 16 0Zm64 96a8 8 0 0 1-16 0v-16a8 8 0 0 1 16 0Zm64 0a8 8 0 0 1-16 0v-16a8 8 0 0 1 16 0Zm0-48a8 8 0 0 1-16 0v-16a8 8 0 0 1 16 0Z"
+                />
+              </svg>
+              <h3 class="text-[#1ECB15] mt-[20px]">3 Cities</h3>
+            </div>
+            <div class="flex flex-col items-center w-1/3 p-[10px]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="80"
+                height="80"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#1ECB15"
+                  d="M14.97 5.92a.967.967 0 0 0-1.18-.68l-3.4.91l-4.44-4.12l-1.23.33l2.66 4.59l-3.19.85l-1.26-.98l-.93.25l1.66 2.88l10.62-2.84c.52-.15.82-.68.69-1.19M21 10l-1 2h-5l-1-2l1-1h2V7h1v2h2zm1 10v2H2v-2h13v-7h5v7z"
+                />
+              </svg>
+              <h3 class="text-[#1ECB15] mt-[20px]">3 Airports</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <th:block th:insert="~{fragments/footer :: footer}"></th:block>
   </body>
 </html>

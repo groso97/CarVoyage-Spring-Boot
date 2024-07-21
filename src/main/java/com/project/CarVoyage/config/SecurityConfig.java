@@ -35,7 +35,7 @@ public class SecurityConfig {
                                                 // sam
                                                 // ulogiran(aute sve)
                                                 .requestMatchers("/", "/login", "/registration", "/cars/**",
-                                                                "/contact-us", "/confirm",
+                                                                "/contact", "/offices", "/confirm",
                                                                 "/privacy-policy",
                                                                 "/terms-and-conditions")
                                                 .permitAll()
