@@ -102,6 +102,25 @@
     .carousel-button:hover {
       background-color: #179510;
     }
+
+
+    .sidebar-button{
+      @apply flex align-middle justify-start w-full text-left py-2 px-4 bg-[#1ECB15] text-white font-semibold rounded-[25px] mb-2;
+    }
+
+    .sidebar-button svg {
+      @apply mr-[8px];
+    }
+
+    .faq-item{
+      @apply border-b border-gray-300 py-4;
+    }
+    
+    .faq-question{
+      @apply text-lg font-medium text-left w-full text-[#333333];
+    }
+
+
 }
 
   
