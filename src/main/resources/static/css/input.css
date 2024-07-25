@@ -2,6 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 @layer components{
+
+
+  /*header*/
+
+/* Tailwind CSS classes */
+.nav-link {
+  @apply relative text-white transition-colors duration-300;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute left-0 bg-[#1ECB15] transition-all duration-300;
+  bottom: 5px; 
+  width: 0;
+  height: 2px;
+}
+
+.nav-link:hover::after, 
+.nav-link.active::after{
+  width: 100%;
+}
+
+.nav-link:hover, .nav-link.active {
+  @apply text-white;
+}
+
+.nav-link-2 {
+  @apply relative text-gray-800 transition-colors duration-300;
+}
+
+.nav-link-2::after {
+  content: '';
+  @apply absolute left-0 bg-[#1ECB15] transition-all duration-300;
+  bottom: 5px; 
+  width: 0;
+  height: 2px;
+}
+
+.nav-link-2:hover::after, 
+.nav-link-2.active::after {
+  width: 100%;
+}
+
+.nav-link-2:hover, 
+.nav-link-2.active {
+  @apply text-gray-800;
+}
+
+
+
+
+  
+  
   h3{
     color:#212529;
     font-weight: 700;
@@ -74,10 +127,10 @@
     }
     .book-now-btn {
       display: inline-flex;
+      justify-content: center;
       align-items: center;
       border: 1px solid #a5dfa2;
       margin-top: 20px;
-      padding-left: 60px;
       border-radius: 30px;
       color:#1ECB15;
       width: 200px;

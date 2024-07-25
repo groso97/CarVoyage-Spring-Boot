@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <th:block
-      th:insert="~{fragments/head :: head(title='Login | CarVoyage')}"
+      th:insert="~{fragments/head :: head(title='Contact | CarVoyage')}"
     ></th:block>
   </head>
   <body>
-    <th:block th:insert="~{fragments/header :: header}"></th:block>
+    <th:block th:insert="~{fragments/header-ostatak :: header}"></th:block>
     <!-- Contact Us -->
     <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
       <div class="max-w-2xl lg:max-w-5xl mx-auto">
@@ -16,7 +16,7 @@
           >
             Contact us
           </h1>
-          <p class="mt-1 text-gray-600 dark:text-neutral-400">
+          <p class="mt-[10px] text-gray-600 dark:text-neutral-400">
             We'd love to talk about how we can help you.
           </p>
         </div>
@@ -311,5 +311,6 @@
       </div>
     </div>
     <!-- End Contact Us -->
+    <th:block th:insert="~{fragments/footer :: footer}"></th:block>
   </body>
 </html>

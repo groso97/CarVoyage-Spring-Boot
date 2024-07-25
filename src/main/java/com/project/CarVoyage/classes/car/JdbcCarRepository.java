@@ -17,4 +17,10 @@ public class JdbcCarRepository implements CarRepository {
         return jdbcTemplate.query(sql, new CarRowMapper());
     }
 
+    @Override
+    public Car findById(int carId) {
+        String sql = "SELECT * FROM cars WHERE car_id = ?";
+        return jdbcTemplate.queryForObject(sql, new CarRowMapper(), carId);
+    }
+
 }

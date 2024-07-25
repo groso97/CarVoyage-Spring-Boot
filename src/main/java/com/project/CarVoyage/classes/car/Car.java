@@ -11,7 +11,12 @@ public class Car {
     private String status;
     private double dailyRate;
     private int locationId;
-
+    private String fuelType;
+    private String transmissionType;
+    private int seats;
+    private int doors;
+    private String airConditioning;
+    private int tankSize;
     private String image;
 
     public int getCarId() {
@@ -100,6 +105,54 @@ public class Car {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public String getTransmissionType() {
+        return transmissionType;
+    }
+
+    public void setTransmissionType(String transmissionType) {
+        this.transmissionType = transmissionType;
+    }
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
+
+    public int getDoors() {
+        return doors;
+    }
+
+    public void setDoors(int doors) {
+        this.doors = doors;
+    }
+
+    public int getTankSize() {
+        return tankSize;
+    }
+
+    public void setTankSize(int tankSize) {
+        this.tankSize = tankSize;
+    }
+
+    public String getAirConditioning() {
+        return airConditioning;
+    }
+
+    public void setAirConditioning(String airConditioning) {
+        this.airConditioning = airConditioning;
     }
 
 }

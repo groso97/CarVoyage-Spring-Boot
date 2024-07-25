@@ -20,6 +20,12 @@ public class CarRowMapper implements RowMapper<Car> {
         car.setStatus(rs.getString("status"));
         car.setDailyRate(rs.getDouble("daily_rate"));
         car.setLocationId(rs.getInt("location_id"));
+        car.setFuelType(rs.getString("fuel_type"));
+        car.setTransmissionType(rs.getString("transmission_type"));
+        car.setSeats(rs.getInt("seats"));
+        car.setDoors(rs.getInt("doors"));
+        car.setAirConditioning(rs.getString("air_conditioning"));
+        car.setTankSize(rs.getInt("tank_size"));
         car.setImage(rs.getString("image"));
 
         return car;

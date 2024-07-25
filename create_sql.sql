@@ -28,10 +28,17 @@ CREATE TABLE cars (
     mileage INT,
     status ENUM('available', 'rented') DEFAULT 'available',
     daily_rate DECIMAL(10, 2) NOT NULL,
-    location_id int,
+    location_id INT,
     image VARCHAR(255) NOT NULL,
+    fuel_type VARCHAR(20),
+    transmission_type VARCHAR(20),
+    seats INT,
+    doors INT,
+    air_conditioning BOOLEAN,
+    tank_size INT,
     FOREIGN KEY(location_id) REFERENCES location(location_id)
 );
+
 
 CREATE TABLE reservations (
     reservation_id INT AUTO_INCREMENT PRIMARY KEY,

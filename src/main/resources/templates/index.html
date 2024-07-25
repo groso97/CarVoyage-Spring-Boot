@@ -137,7 +137,7 @@
                 Whether you're looking for fuel efficiency, luxury, or rugged
                 off-road capabilities, we've got all you need.
               </p>
-              <a href="#" class="fleet-button transition-colors">
+              <a href="/cars" class="fleet-button transition-colors">
                 Vehicle fleet
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -273,9 +273,15 @@
                     ></span>
                     / day
                   </p>
-                  <button class="book-now-btn transition-colors">
-                    Book now
-                  </button>
+                  <form th:action="'/cars/'+${car.carId}" method="GET">
+                    <input type="hidden" th:value="${car.carId}" />
+                    <button
+                      type="submit"
+                      class="book-now-btn transition-colors"
+                    >
+                      Book now
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>

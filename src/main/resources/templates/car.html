@@ -2,10 +2,12 @@
 <html lang="en">
   <head>
     <th:block
-      th:insert="~{fragments/head :: head(title='Registration | CarVoyage')}"
+      th:insert="~{fragments/head :: head(title='Car| CarVoyage')}"
     ></th:block>
   </head>
   <body>
     <th:block th:insert="~{fragments/header-ostatak :: header}"></th:block>
+
+    <p th:text="${car.make}"></p>
   </body>
 </html>
