@@ -4,9 +4,81 @@
     <th:block
       th:insert="~{fragments/head :: head(title='Offices | CarVoyage')}"
     ></th:block>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
     <th:block th:insert="~{fragments/header-ostatak :: header}"></th:block>
-    <!-- <th:block th:insert="~{fragments/footer :: footer}"></th:block> -->
+
+    <div
+      class="first-section w-full flex justify-center items-center mt-[5vh]"
+    >
+      <div class="container flex w-[1100px] h-auto flex-col">
+        <div class="offices w-full text-center">
+          <h2 class="text-[#333333] text-[40px] font-bold">Offices</h2>
+          <div class="flex justify-center w-full">
+            <p class="w-[900px] mt-[12px]">
+              Welcome to CarVoyage, your trusted partner for car rentals in
+              Croatia. We are proud to have a presence in three major cities,
+              providing you with easy access to our services wherever you are.
+              Our offices are located in Zagreb, Rijeka, and Split,
+              strategically placed to meet the needs of all our clients.
+            </p>
+          </div>
+          <hr
+            class="border-0 h-[3px] bg-[#EFEFEF] mt-[15px] mb-[10px] w-full"
+          />
+          <div class="flex items-center justify-center gap-[10px]">
+            <button class="office-btn transition-colors">Zagreb</button>
+            <button class="office-btn transition-colors">Rijeka</button>
+            <button class="office-btn transition-colors">Split</button>
+          </div>
+        </div>
+
+        <div
+          th:each="location : ${locations}"
+          class="w-full shadow-lg mb-[30px] rounded-[30px] overflow-hidden mt-[30px] flex border border-[#a5dfa2]"
+        >
+          <img
+            th:src="${'/img/' + location.image}"
+            th:alt="${location.name}"
+            class="w-[55%] object-cover"
+          />
+          <div class="p-6 flex flex-col justify-center w-full md:w-1/2">
+            <h2
+              th:text="${location.name}"
+              class="text-[20px] font-bold text-gray-800 mb-4"
+            ></h2>
+            <div class="mb-4  ">
+              <p class="text-[#626262]  ">
+                <strong>Address:</strong>
+                <p th:text="${location.address}"></p>
+              </p>
+              <p class="mt-3 text-[#626262]"><strong>Working Hours:</strong></p>
+              <ul class="text-[#626262]">
+                <li>Monday - Friday : 08:00 - 20:00</li>
+                <li>Saturday : 08:00 - 14:00</li>
+                <li>Sunday : Closed</li>
+              </ul>
+            </div>
+            <div class="mb-3">
+              <p class="text-[#626262]"><strong>Contact:</strong></p>
+              <p th:text="${location.phoneNumber}" class="text-[#626262]"></p>
+              <p class="text-black font-semibold">
+                <a th:text="${location.email}" href="mailto:carvoyage.contact@gmail.com"
+                  ></a
+                >
+              </p>
+            </div>
+            <p class="text-[#626262]">
+              Visit us at our central location in Zagreb for all your car rental
+              needs.
+            </p>
+            <button class="book-now-btn w-full ">More info</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <th:block th:insert="~{fragments/footer :: footer}"></th:block>
   </body>
 </html>

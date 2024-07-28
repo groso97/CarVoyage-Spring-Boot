@@ -13,9 +13,12 @@ CREATE TABLE users (
     confirmation_token VARCHAR(255) DEFAULT NULL;
 );
 
-CREATE TABLE location(
+CREATE TABLE locations(
 	location_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50)
+    name VARCHAR(50),
+    address VARCHAR(50),
+    phone_number VARCHAR(50),
+    image VARCHAR(255) NOT NULL
     );
     
 CREATE TABLE cars (
@@ -36,7 +39,7 @@ CREATE TABLE cars (
     doors INT,
     air_conditioning BOOLEAN,
     tank_size INT,
-    FOREIGN KEY(location_id) REFERENCES location(location_id)
+    FOREIGN KEY(location_id) REFERENCES locations(location_id)
 );
 
 

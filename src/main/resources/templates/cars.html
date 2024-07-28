@@ -10,8 +10,18 @@
 
     <div class="mx-auto w-[1100px] 2xl:px-0">
       <!-- Heading & Filters -->
+      <div class="flex flex-col justify-center align-middle mt-[5vh]">
+        <h2 class="text-[#333333] text-[40px] font-bold text-center">Cars</h2>
+        <p class="mx-auto text-center w-[900px] mt-[12px]">
+          Discover our diverse fleet of vehicles tailored to meet your every
+          need. Whether you're looking for a compact car, a comfortable sedan,
+          or a spacious SUV, we have the perfect ride for you
+        </p>
+      </div>
+      <hr class="border-0 h-[3px] bg-[#EFEFEF] mt-[15px] mb-[10px] w-full" />
+
       <div
-        class="mt-[50px] items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8"
+        class="mt-[30px] items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8"
       >
         <div>
           <nav class="flex" aria-label="Breadcrumb">
@@ -66,7 +76,6 @@
             </ol>
           </nav>
         </div>
-        <h2 class="text-[30px]">Cars</h2>
 
         <div class="flex items-center space-x-4">
           <button
@@ -160,7 +169,7 @@
             </svg>
           </button>
 
-          <!-- <div
+          <div
             id="dropdownSort1"
             class="z-50 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
             data-popper-placement="bottom"
@@ -169,22 +178,6 @@
               class="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400"
               aria-labelledby="sortDropdownButton"
             >
-              <li>
-                <a
-                  href="#"
-                  class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  The most popular
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Newest
-                </a>
-              </li>
               <li>
                 <a
                   href="#"
@@ -201,24 +194,8 @@
                   Decreasing price
                 </a>
               </li>
-              <li>
-                <a
-                  href="#"
-                  class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  No. reviews
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Discount %
-                </a>
-              </li>
             </ul>
-          </div> -->
+          </div>
         </div>
       </div>
       <div
@@ -295,8 +272,8 @@
               th:text="${car.make + ' ' + car.model}"
             ></h3>
 
-            <ul class="mt-2 flex items-center gap-4 flex-wrap">
-              <li class="flex items-center gap-2">
+            <ul class="mt-[20px] flex items-center gap-[12px] flex-wrap">
+              <li class="flex items-center gap-[10px]">
                 <svg
                   class="h-[18px] w-[18px] text-gray-500 dark:text-gray-400"
                   aria-hidden="true"
@@ -489,8 +466,8 @@
 
             <div class="mt-[16px]">
               <p
-                th:text="${#numbers.formatDecimal(car.dailyRate, 0, 0) + ' €'}"
-                class="text-center text-2xl font-bold text-gray-900"
+                th:text="${#numbers.formatDecimal(car.dailyRate, 0, 0) + '€'} + ' / day'"
+                class="text-center text-2xl font-bold text-gray-900 mt-[30px]"
               ></p>
             </div>
 
@@ -499,7 +476,7 @@
                 <input type="hidden" th:value="${car.carId}" />
                 <button
                   type="submit"
-                  class="w-full h-[45px] justify-center text-[16px] inline-flex items-center transition-colors text-[#1ECB15] hover:bg-[#1ECB15] font-semibold hover:text-white rounded-[30px] border border-solid border-[#a5dfa2]"
+                  class="w-full h-[45px] mt-[10px] justify-center text-[16px] inline-flex items-center transition-colors text-[#1ECB15] hover:bg-[#1ECB15] font-semibold hover:text-white rounded-[30px] border border-solid border-[#a5dfa2]"
                 >
                   Book now
                 </button>

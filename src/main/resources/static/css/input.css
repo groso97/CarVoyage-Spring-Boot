@@ -125,6 +125,7 @@
       font-size: 1.2em;
       color: #000;
     }
+
     .book-now-btn {
       display: inline-flex;
       justify-content: center;
@@ -171,6 +172,26 @@
     
     .faq-question{
       @apply text-lg font-medium text-left w-full text-[#333333];
+    }
+
+
+
+    /*offices.html*/
+    .office-btn {
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #a5dfa2;
+      margin-top: 10px;
+      border-radius: 30px;
+      color:#1ECB15;
+      width: 100px;
+      height: 30px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .office-btn:hover {
+      background-color: #1ECB15;
+      color:#FFFFFF;
     }
 
 

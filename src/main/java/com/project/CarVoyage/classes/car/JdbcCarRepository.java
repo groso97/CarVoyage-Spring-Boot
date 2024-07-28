@@ -23,4 +23,16 @@ public class JdbcCarRepository implements CarRepository {
         return jdbcTemplate.queryForObject(sql, new CarRowMapper(), carId);
     }
 
+    @Override
+    public List<Car> findAllSortedByPriceAsc() {
+        String sql = "SELECT * FROM cars ORDER BY daily_rate ASC";
+        return jdbcTemplate.query(sql, new CarRowMapper());
+    }
+
+    @Override
+    public List<Car> findAllSortedByPriceDesc() {
+        String sql = "SELECT * FROM cars ORDER BY daily_rate DESC";
+        return jdbcTemplate.query(sql, new CarRowMapper());
+    }
+
 }

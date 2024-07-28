@@ -19,8 +19,15 @@ public class CarsController {
     private CarRepository carRepository;
 
     @GetMapping("/cars")
-    public String getCarsPage(Model model) {
-        List<Car> cars = carRepository.findAll();
+    public String getCarsPage(@RequestParam(value = "sort", required = false) String sort, Model model) {
+        List<Car> cars;
+        if ("priceAsc".equals(sort)) {
+            cars = carRepository.findAllSortedByPriceAsc();
+        } else if ("priceDesc".equals(sort)) {
+            cars = carRepository.findAllSortedByPriceDesc();
+        } else {
+            cars = carRepository.findAll();
+        }
         model.addAttribute("cars", cars);
         return "cars";
     }

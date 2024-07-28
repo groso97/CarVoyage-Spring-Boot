@@ -10,4 +10,8 @@ public interface CarRepository {
 
     Car findById(int carId);
 
+    List<Car> findAllSortedByPriceAsc();
+
+    List<Car> findAllSortedByPriceDesc();
+
 }

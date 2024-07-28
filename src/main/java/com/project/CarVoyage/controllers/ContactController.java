@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ContactController {
@@ -27,10 +28,10 @@ public class ContactController {
             @RequestParam String email,
             @RequestParam String phone,
             @RequestParam String details,
-            Model model) {
+            RedirectAttributes redirectAttributes) {
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("no-reply@gmail.com");
+        message.setFrom(email);
         message.setTo("carvoyage.contact@gmail.com");
         message.setSubject("New Inquiry from " + firstName + " " + lastName);
         message.setText("First Name: " + firstName + "\n"
@@ -38,11 +39,12 @@ public class ContactController {
                 + "Email: " + email + "\n"
                 + "Phone: " + phone + "\n"
                 + "Details: " + details);
+        message.setReplyTo(email);
 
         mailSender.send(message);
 
-        model.addAttribute("message", "Your inquiry has been sent successfully!");
+        redirectAttributes.addFlashAttribute("message", "Your inquiry has been sent successfully!");
 
-        return "contact";
+        return "redirect:/contact";
     }
 }
