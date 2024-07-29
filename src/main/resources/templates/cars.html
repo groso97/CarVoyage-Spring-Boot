@@ -11,7 +11,10 @@
     <div class="mx-auto w-[1100px] 2xl:px-0">
       <!-- Heading & Filters -->
       <div class="flex flex-col justify-center align-middle mt-[5vh]">
-        <h2 class="text-[#333333] text-[40px] font-bold text-center">Cars</h2>
+        <h2
+          th:text="${location != null ? 'Cars in ' + location : 'Cars'}"
+          class="text-[#333333] text-[40px] font-bold text-center"
+        ></h2>
         <p class="mx-auto text-center w-[900px] mt-[12px]">
           Discover our diverse fleet of vehicles tailored to meet your every
           need. Whether you're looking for a compact car, a comfortable sedan,
@@ -217,32 +220,6 @@
           <div class="pt-[24px]">
             <div class="mb-[16px] flex items-center justify-between gap-[16px]">
               <div class="flex items-center justify-between gap-[4px]">
-                <button
-                  type="button"
-                  data-tooltip-target="tooltip-quick-look"
-                  class="rounded-[30px] p-2 text-[#333333] hover:bg-[#179510] hover:text-white"
-                >
-                  <svg
-                    class="h-5 w-5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-width="2"
-                      d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
-                    />
-                    <path
-                      stroke="currentColor"
-                      stroke-width="2"
-                      d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                    />
-                  </svg>
-                </button>
                 <button
                   type="button"
                   data-tooltip-target="tooltip-add-to-favorites"

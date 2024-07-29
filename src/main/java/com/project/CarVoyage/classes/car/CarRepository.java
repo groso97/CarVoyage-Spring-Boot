@@ -14,4 +14,6 @@ public interface CarRepository {
 
     List<Car> findAllSortedByPriceDesc();
 
+    List<Car> findByLocation(String location);
+
 }

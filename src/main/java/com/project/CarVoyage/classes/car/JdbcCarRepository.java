@@ -35,4 +35,10 @@ public class JdbcCarRepository implements CarRepository {
         return jdbcTemplate.query(sql, new CarRowMapper());
     }
 
+    @Override
+    public List<Car> findByLocation(String location) {
+        String sql = "SELECT * FROM cars WHERE location_id = (SELECT location_id FROM locations WHERE name = ?)";
+        return jdbcTemplate.query(sql, new CarRowMapper(), location);
+    }
+
 }

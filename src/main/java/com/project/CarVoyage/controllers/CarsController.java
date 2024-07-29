@@ -19,16 +19,22 @@ public class CarsController {
     private CarRepository carRepository;
 
     @GetMapping("/cars")
-    public String getCarsPage(@RequestParam(value = "sort", required = false) String sort, Model model) {
+    public String getCarsPage(@RequestParam(value = "sort", required = false) String sort,
+            @RequestParam(value = "location", required = false) String location, Model model) {
         List<Car> cars;
-        if ("priceAsc".equals(sort)) {
-            cars = carRepository.findAllSortedByPriceAsc();
-        } else if ("priceDesc".equals(sort)) {
-            cars = carRepository.findAllSortedByPriceDesc();
+        if (location != null && !location.isEmpty()) {
+            cars = carRepository.findByLocation(location);
         } else {
-            cars = carRepository.findAll();
+            if ("priceAsc".equals(sort)) {
+                cars = carRepository.findAllSortedByPriceAsc();
+            } else if ("priceDesc".equals(sort)) {
+                cars = carRepository.findAllSortedByPriceDesc();
+            } else {
+                cars = carRepository.findAll();
+            }
         }
         model.addAttribute("cars", cars);
+        model.addAttribute("location", location);
         return "cars";
     }
 
