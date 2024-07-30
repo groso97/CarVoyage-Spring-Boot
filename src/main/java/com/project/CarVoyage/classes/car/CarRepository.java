@@ -16,4 +16,9 @@ public interface CarRepository {
 
     List<Car> findByLocation(String location);
 
+    List<Car> findByFuelType(String fuelType);
+
+    List<Car> findByTransmissionType(String transmissionType);
+
+    List<Car> findBySeats(int seats);
 }

@@ -12,6 +12,7 @@ public class JdbcCarRepository implements CarRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Override
     public List<Car> findAll() {
         String sql = "SELECT * FROM cars";
         return jdbcTemplate.query(sql, new CarRowMapper());
@@ -41,4 +42,21 @@ public class JdbcCarRepository implements CarRepository {
         return jdbcTemplate.query(sql, new CarRowMapper(), location);
     }
 
+    @Override
+    public List<Car> findByFuelType(String fuelType) {
+        String sql = "SELECT * FROM cars WHERE fuel_type = ?";
+        return jdbcTemplate.query(sql, new CarRowMapper(), fuelType);
+    }
+
+    @Override
+    public List<Car> findByTransmissionType(String transmissionType) {
+        String sql = "SELECT * FROM cars WHERE transmission_type = ?";
+        return jdbcTemplate.query(sql, new CarRowMapper(), transmissionType);
+    }
+
+    @Override
+    public List<Car> findBySeats(int seats) {
+        String sql = "SELECT * FROM cars WHERE seats = ?";
+        return jdbcTemplate.query(sql, new CarRowMapper(), seats);
+    }
 }

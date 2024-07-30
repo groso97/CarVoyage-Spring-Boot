@@ -19,11 +19,23 @@ public class CarsController {
     private CarRepository carRepository;
 
     @GetMapping("/cars")
-    public String getCarsPage(@RequestParam(value = "sort", required = false) String sort,
-            @RequestParam(value = "location", required = false) String location, Model model) {
+    public String getCarsPage(
+            @RequestParam(value = "sort", required = false) String sort,
+            @RequestParam(value = "location", required = false) String location,
+            @RequestParam(value = "fuelType", required = false) String fuelType,
+            @RequestParam(value = "transmission", required = false) String transmission,
+            @RequestParam(value = "seats", required = false) Integer seats,
+            Model model) {
         List<Car> cars;
+
         if (location != null && !location.isEmpty()) {
             cars = carRepository.findByLocation(location);
+        } else if (fuelType != null && !fuelType.isEmpty()) {
+            cars = carRepository.findByFuelType(fuelType);
+        } else if (transmission != null && !transmission.isEmpty()) {
+            cars = carRepository.findByTransmissionType(transmission);
+        } else if (seats != null) {
+            cars = carRepository.findBySeats(seats);
         } else {
             if ("priceAsc".equals(sort)) {
                 cars = carRepository.findAllSortedByPriceAsc();
@@ -33,8 +45,13 @@ public class CarsController {
                 cars = carRepository.findAll();
             }
         }
+
         model.addAttribute("cars", cars);
         model.addAttribute("location", location);
+        model.addAttribute("fuelType", fuelType);
+        model.addAttribute("transmission", transmission);
+        model.addAttribute("seats", seats);
+
         return "cars";
     }
 
@@ -44,5 +61,4 @@ public class CarsController {
         model.addAttribute("car", car);
         return "car";
     }
-
 }
