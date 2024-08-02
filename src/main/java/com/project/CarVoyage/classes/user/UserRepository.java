@@ -11,4 +11,6 @@ public interface UserRepository {
 
     void updateEmailVerification(User user);
 
+    void updatePassword(User user);
+
 }

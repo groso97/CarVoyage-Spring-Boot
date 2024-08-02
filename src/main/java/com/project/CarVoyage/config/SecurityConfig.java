@@ -36,8 +36,8 @@ public class SecurityConfig {
                                                 // ulogiran(aute sve)
                                                 .requestMatchers("/", "/login", "/registration", "/cars/**",
                                                                 "/contact", "/offices", "/confirm",
-                                                                "/privacy-policy",
-                                                                "/terms-and-conditions")
+                                                                "/termsAndConditions", "/forgotten-password",
+                                                                "reset-password")
                                                 .permitAll()
                                                 .anyRequest().authenticated())
                                 .formLogin((formLogin) -> formLogin

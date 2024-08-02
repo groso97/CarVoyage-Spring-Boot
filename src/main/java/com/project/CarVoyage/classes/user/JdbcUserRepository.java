@@ -14,14 +14,14 @@ public class JdbcUserRepository implements UserRepository {
 
     @Override
     public User findByUsername(String username) {
-        String sql = "SELECT user_id, first_name, last_name, email, username, password, phone_number, address, city, created_at, email_verified, confirmation_token FROM users WHERE username = ?";
+        String sql = "SELECT user_id, first_name, last_name, email, username, password, created_at, email_verified, confirmation_token FROM users WHERE username = ?";
         List<User> users = jdbcTemplate.query(sql, new UserRowMapper(), username);
         return users.isEmpty() ? null : users.get(0);
     }
 
     @Override
     public User findByEmail(String email) {
-        String sql = "SELECT user_id, first_name, last_name, email, username, password, phone_number, address, city, created_at, email_verified, confirmation_token FROM users WHERE email = ?";
+        String sql = "SELECT user_id, first_name, last_name, email, username, password, created_at, email_verified, confirmation_token FROM users WHERE email = ?";
         List<User> users = jdbcTemplate.query(sql, new UserRowMapper(), email);
         return users.isEmpty() ? null : users.get(0);
     }
@@ -29,11 +29,11 @@ public class JdbcUserRepository implements UserRepository {
     @Override
     public void saveUser(User user) {
         String sql = """
-                INSERT INTO users (first_name, last_name, email, username, password, phone_number, address, city, email_verified, confirmation_token) \
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\
+                INSERT INTO users (first_name, last_name, email, username, password, email_verified, confirmation_token) \
+                VALUES (?, ?, ?, ?, ?, ?, ?)\
                 """;
         jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getUsername(),
-                user.getPassword(), user.getPhoneNumber(), user.getAddress(), user.getCity(), user.isEmailVerified(),
+                user.getPassword(), user.isEmailVerified(),
                 user.getConfirmationToken());
 
     }
@@ -41,7 +41,7 @@ public class JdbcUserRepository implements UserRepository {
     @Override
     public User findByConfirmationToken(String token) {
         String sql = """
-                SELECT user_id, first_name, last_name, email, username, password, phone_number, address, city, created_at, email_verified, confirmation_token \
+                SELECT user_id, first_name, last_name, email, username, password, created_at, email_verified, confirmation_token \
                 FROM users WHERE confirmation_token = ?\
                 """;
         try {
@@ -55,5 +55,11 @@ public class JdbcUserRepository implements UserRepository {
     public void updateEmailVerification(User user) {
         String sql = "UPDATE users SET email_verified = ? WHERE user_id = ?";
         jdbcTemplate.update(sql, user.isEmailVerified(), user.getUserId());
+    }
+
+    @Override
+    public void updatePassword(User user) {
+        String sql = "UPDATE users SET password = ? WHERE user_id = ?";
+        jdbcTemplate.update(sql, user.getPassword(), user.getUserId());
     }
 }

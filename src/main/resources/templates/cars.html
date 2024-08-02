@@ -33,7 +33,7 @@
             >
               <li class="inline-flex items-center">
                 <a
-                  href="/"
+                  th:href="@{/}"
                   class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white"
                 >
                   <svg
@@ -355,13 +355,11 @@
           th:each="car : ${cars}"
         >
           <div class="h-56 w-full">
-            <a href="#">
-              <img
-                class="mx-auto h-full"
-                th:src="${'/img/' + car.image}"
-                th:alt="${car.make + ' ' + car.model}"
-              />
-            </a>
+            <img
+              class="mx-auto h-full"
+              th:src="${'/img/' + car.image}"
+              th:alt="${car.make + ' ' + car.model}"
+            />
           </div>
           <div class="pt-[24px]">
             <div class="mb-[16px] flex items-center justify-between gap-[16px]">

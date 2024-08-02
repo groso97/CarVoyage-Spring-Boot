@@ -137,7 +137,7 @@
                 Whether you're looking for fuel efficiency, luxury, or rugged
                 off-road capabilities, we've got all you need.
               </p>
-              <a href="/cars" class="fleet-button transition-colors">
+              <a th:href="@{/cars}" class="fleet-button transition-colors">
                 Vehicle fleet
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -174,7 +174,7 @@
                 WiFi, and 24/7 roadside assistance. These features ensure your
                 journey is comfortable, safe, and convenient.
               </p>
-              <a href="#FAQ" class="addservices-button transition-colors"
+              <a th:href="@{#FAQ}" class="addservices-button transition-colors"
                 >More info
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -212,7 +212,10 @@
                 pick up and drop off your vehicle seamlessly, ensuring a
                 hassle-free travel experience from the moment you land.
               </p>
-              <a href="/offices" class="alloffices-button transition-colors">
+              <a
+                th:href="@{/offices}"
+                class="alloffices-button transition-colors"
+              >
                 All offices
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -423,7 +426,7 @@
             <div class="flex">
               <!-- Sidebar -->
               <div class="w-1/3">
-                <div class="bg-white shadow-lg p-[20px]">
+                <div class="bg-white shadow-lg p-[20px] rounded-[30px]">
                   <button
                     id="reservation-btn"
                     class="sidebar-button"
@@ -518,7 +521,7 @@
               </div>
 
               <!-- FAQ Content -->
-              <div class="w-3/4 bg-white shadow-lg p-[16px]">
+              <div class="w-3/4 bg-white shadow-lg p-[16px] rounded-[30px]">
                 <div id="reservation" class="faq-category">
                   <div class="faq-item">
                     <button class="faq-question" onclick="toggleAnswer(0)">

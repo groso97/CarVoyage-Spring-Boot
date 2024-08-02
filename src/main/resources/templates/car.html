@@ -2,12 +2,502 @@
 <html lang="en">
   <head>
     <th:block
-      th:insert="~{fragments/head :: head(title='Car| CarVoyage')}"
+      th:insert="~{fragments/head :: head(title='Car Details | CarVoyage')}"
     ></th:block>
   </head>
   <body>
     <th:block th:insert="~{fragments/header-ostatak :: header}"></th:block>
 
-    <p th:text="${car.make}"></p>
+    <div class="mx-auto w-[1100px] 2xl:px-0">
+      <!-- Heading -->
+      <div class="flex flex-col justify-center align-middle mt-[5vh]">
+        <h2
+          th:text="${car.make + ' ' + car.model}"
+          class="text-[#333333] text-[40px] font-bold text-center"
+        ></h2>
+      </div>
+      <hr class="border-0 h-[3px] bg-[#EFEFEF] mt-[15px] mb-[10px] w-full" />
+
+      <!-- Breadcrumb -->
+      <div
+        class="mt-[30px] items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8"
+      >
+        <nav class="flex" aria-label="Breadcrumb">
+          <ol
+            class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse"
+          >
+            <li class="inline-flex items-center">
+              <a
+                th:href="@{/}"
+                class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-400 dark:hover:text-white"
+              >
+                <svg
+                  class="me-2.5 h-3 w-3"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"
+                  />
+                </svg>
+                Home
+              </a>
+            </li>
+            <li aria-current="page">
+              <div class="flex items-center">
+                <svg
+                  class="h-[20px] w-[20px] text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m9 5 7 7-7 7"
+                  />
+                </svg>
+                <a
+                  th:href="@{/cars}"
+                  class="text-sm font-medium text-gray-500 dark:text-gray-400 md:ms-2"
+                  >Cars</a
+                >
+              </div>
+            </li>
+            <li aria-current="page">
+              <div class="flex items-center">
+                <svg
+                  class="h-[20px] w-[20px] text-gray-400"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m9 5 7 7-7 7"
+                  />
+                </svg>
+                <span
+                  class="text-sm font-medium text-gray-500 dark:text-gray-400 md:ms-2"
+                  th:text="${car.make + ' ' + car.model}"
+                ></span>
+              </div>
+            </li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- Car Details -->
+      <div class="mb-4 grid gap-4 sm:grid-cols-1 md:mb-8 lg:grid-cols-1">
+        <div class="rounded-[30px] border border-[#a5dfa2] p-6 shadow-sm">
+          <div class="h-56 w-full">
+            <img
+              class="mx-auto h-full"
+              th:src="${'/img/' + car.image}"
+              th:alt="${car.make + ' ' + car.model}"
+            />
+          </div>
+          <div class="">
+            <h3
+              class="text-center"
+              th:text="${car.make + ' ' + car.model}"
+            ></h3>
+
+            <ul
+              class="justify-center mt-[20px] flex items-center gap-[12px] flex-wrap"
+            >
+              <li class="flex items-center gap-[10px]">
+                <svg
+                  class="h-[18px] w-[18px] text-gray-500"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3.975 21v-3h3.1l-2.55-8.35q-.675-.375-1.112-1.1T2.975 7q0-1.25.875-2.125T5.975 4q.975 0 1.738.563T8.775 6h3.2V5q0-.425.288-.712T12.975 4q.225 0 .438.1t.362.3l1.7-1.6q.225-.225.538-.288t.612.088l3.9 1.8q.3.15.413.438t-.013.562q-.15.3-.437.388t-.563-.038l-3.6-1.65l-2.35 2.2v1.4l2.35 2.15l3.6-1.65q.275-.125.575-.025t.425.375q.15.3.025.575t-.425.425l-3.9 1.85q-.3.15-.612.087t-.538-.287l-1.7-1.6q-.15.15-.362.275t-.438.125q-.425 0-.712-.287T11.975 9V8h-3.2q-.075.2-.162.375t-.238.375l5 9.25h3.6v3zm2-13q.425 0 .713-.288T6.975 7t-.287-.712T5.975 6t-.712.288T4.975 7t.288.713t.712.287"
+                  />
+                </svg>
+                <p
+                  th:text="${car.year}"
+                  class="text-sm font-medium text-gray-500"
+                ></p>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="h-4 w-4 text-gray-500"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4.81V19c-3.31 0-6-2.63-6-5.87c0-1.56.62-3.03 1.75-4.14zM6.35 7.56C4.9 8.99 4 10.96 4 13.13C4 17.48 7.58 21 12 21s8-3.52 8-7.87c0-2.17-.9-4.14-2.35-5.57L12.7 2.69c-.39-.38-1.01-.38-1.4 0z"
+                  />
+                </svg>
+                <p
+                  th:text="${car.color}"
+                  class="text-sm font-medium text-gray-500"
+                ></p>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="h-4 w-4 text-gray-500"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M18 10a1 1 0 0 1-1-1a1 1 0 0 1 1-1a1 1 0 0 1 1 1a1 1 0 0 1-1 1m-6 0H6V5h6m7.77 2.23l.01-.01l-3.72-3.72L15 4.56l2.11 2.11C16.17 7 15.5 7.93 15.5 9a2.5 2.5 0 0 0 2.5 2.5c.36 0 .69-.08 1-.21v7.21a1 1 0 0 1-1 1a1 1 0 0 1-1-1V14a2 2 0 0 0-2-2h-1V5a2 2 0 0 0-2-2H6c-1.11 0-2 .89-2 2v16h10v-7.5h1.5v5A2.5 2.5 0 0 0 18 21a2.5 2.5 0 0 0 2.5-2.5V9c0-.69-.28-1.32-.73-1.77"
+                  />
+                </svg>
+                <p
+                  th:text="${car.mileage + ' km'}"
+                  class="text-sm font-medium text-gray-500"
+                ></p>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="h-4 w-4 text-gray-500"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M18 10a1 1 0 0 1-1-1a1 1 0 0 1 1-1a1 1 0 0 1 1 1a1 1 0 0 1-1 1m-6 0H6V5h6m7.77 2.23l.01-.01l-3.72-3.72L15 4.56l2.11 2.11C16.17 7 15.5 7.93 15.5 9a2.5 2.5 0 0 0 2.5 2.5c.36 0 .69-.08 1-.21v7.21a1 1 0 0 1-1 1a1 1 0 0 1-1-1V14a2 2 0 0 0-2-2h-1V5a2 2 0 0 0-2-2H6c-1.11 0-2 .89-2 2v16h10v-7.5h1.5v5A2.5 2.5 0 0 0 18 21a2.5 2.5 0 0 0 2.5-2.5V9c0-.69-.28-1.32-.73-1.77"
+                  />
+                </svg>
+                <p
+                  th:text="${car.fuelType}"
+                  class="text-sm font-medium text-gray-500"
+                ></p>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="h-4 w-4 text-gray-500"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 21q-1.25 0-2.125-.875T1 18q0-.975.563-1.75T3 15.175v-6.35q-.875-.3-1.437-1.075T1 6q0-1.25.875-2.125T4 3t2.125.875T7 6q0 .975-.562 1.75T5 8.825V11h6V8.825q-.875-.3-1.437-1.075T9 6q0-1.25.875-2.125T12 3t2.125.875T15 6q0 .975-.562 1.75T13 8.825V11h5q.425 0 .713-.287T19 10V8.825q-.875-.3-1.437-1.075T17 6q0-1.25.875-2.125T20 3t2.125.875T23 6q0 .975-.562 1.75T21 8.825V10q0 1.25-.875 2.125T18 13h-5v2.175q.875.3 1.438 1.075T15 18q0 1.25-.875 2.125T12 21t-2.125-.875T9 18q0-.975.563-1.75T11 15.175V13H5v2.175q.875.3 1.438 1.075T7 18q0 1.25-.875 2.125T4 21"
+                  />
+                </svg>
+                <p
+                  th:text="${car.transmissionType}"
+                  class="text-sm font-medium text-gray-500"
+                ></p>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="h-4 w-4 text-gray-500"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 12q-1.65 0-2.825-1.175T8 8t1.175-2.825T12 4t2.825 1.175T16 8t-1.175 2.825T12 12m-8 8v-2.8q0-.85.438-1.562T5.6 14.55q1.55-.775 3.15-1.162T12 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2V20z"
+                  />
+                </svg>
+                <p
+                  th:text="${car.seats}"
+                  class="text-sm font-medium text-gray-500"
+                ></p>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="h-4 w-4 text-gray-500"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 14h-3v2h3zm3 7H3V11l8-8h10a1 1 0 0 1 1 1zM11.83 5l-6 6H20V5z"
+                  />
+                </svg>
+                <p
+                  th:text="${car.doors}"
+                  class="text-sm font-medium text-gray-500"
+                ></p>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="h-4 w-4 text-gray-500"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 11a1 1 0 0 0-1 1a1 1 0 0 0 1 1a1 1 0 0 0 1-1a1 1 0 0 0-1-1m.5-9c4.5 0 4.61 3.57 2.25 4.75c-.99.49-1.43 1.54-1.62 2.47c.48.2.9.51 1.22.91c3.7-2 7.68-1.21 7.68 2.37c0 4.5-3.57 4.6-4.75 2.23c-.5-.99-1.56-1.43-2.49-1.62c-.2.48-.51.89-.91 1.23c1.99 3.69 1.2 7.66-2.38 7.66c-4.5 0-4.59-3.58-2.23-4.76c.98-.49 1.42-1.53 1.62-2.45c-.49-.2-.92-.52-1.24-.92C5.96 15.85 2 15.07 2 11.5C2 7 5.56 6.89 6.74 9.26c.5.99 1.55 1.42 2.48 1.61c.19-.48.51-.9.92-1.22C8.15 5.96 8.94 2 12.5 2"
+                  />
+                </svg>
+                <p
+                  th:text="${car.airConditioning}"
+                  class="text-sm font-medium text-gray-500"
+                ></p>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg
+                  class="h-4 w-4 text-gray-500"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 2h3c.28 0 .53.11.71.29l2.08 2.09l.8-.79C10 3.2 10.5 3 11 3h6c.5 0 1 .2 1.41.59l1 1C19.8 5 20 5.5 20 6v13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8c0-.5.2-1 .59-1.41l.79-.8L5.59 4H3zm8 3v2h6V5zm.41 6l-2-2H8v1.41l2 2v3.18l-2 2V19h1.41l2-2h3.18l2 2H18v-1.41l-2-2v-3.18l2-2V9h-1.41l-2 2zm.59 2h2v2h-2z"
+                  />
+                </svg>
+                <p
+                  th:text="${car.tankSize + ' L'}"
+                  class="text-sm font-medium text-gray-500"
+                ></p>
+              </li>
+            </ul>
+            <!-- <div class="mt-[16px]">
+              <p
+                th:text="${#numbers.formatDecimal(car.dailyRate, 0, 0) + '€'} + ' / day'"
+                class="text-center text-2xl font-bold text-gray-900 mt-[30px]"
+              ></p>
+            </div> -->
+
+            <div class="mt-[16px]">
+              <form th:action="@{/contact}" method="POST" class="w-full">
+                <div class="mt-[30px] grid lg:grid-cols-2 gap-6 lg:gap-16">
+                  <!-- Personal Information Section -->
+                  <div
+                    class="flex flex-col border border-[#a5dfa2] rounded-[30px] sm:p-6 lg:p-8"
+                  >
+                    <h2 class="mb-8 mt-4 text-xl font-semibold text-gray-800">
+                      Personal information
+                    </h2>
+                    <div class="grid gap-4">
+                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label for="firstName" class="sr-only"
+                            >First Name</label
+                          >
+                          <input
+                            type="text"
+                            name="firstName"
+                            id="firstName"
+                            class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
+                            placeholder="First Name"
+                            required
+                          />
+                        </div>
+
+                        <div>
+                          <label for="lastName" class="sr-only"
+                            >Last Name</label
+                          >
+                          <input
+                            type="text"
+                            name="lastName"
+                            id="lastName"
+                            class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
+                            placeholder="Last Name"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label for="email" class="sr-only">Email</label>
+                        <input
+                          type="email"
+                          name="email"
+                          id="email"
+                          autocomplete="email"
+                          class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
+                          placeholder="Email"
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label for="confirmEmail" class="sr-only"
+                          >Confirm e-mail</label
+                        >
+                        <input
+                          type="email"
+                          name="confirmEmail"
+                          id="confirmEmail"
+                          class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
+                          placeholder="Confirm email"
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label for="phoneNumber" class="sr-only"
+                          >Phone Number</label
+                        >
+                        <input
+                          type="tel"
+                          name="phoneNumber"
+                          id="phoneNumber"
+                          class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
+                          placeholder="Phone number"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Personal Information Section -->
+
+                  <!-- Card Information Section -->
+                  <div
+                    class="flex flex-col border border-[#a5dfa2] rounded-[30px] sm:p-6 lg:p-8"
+                  >
+                    <h2 class="mb-8 mt-4 text-xl font-semibold text-gray-800">
+                      Card information
+                    </h2>
+                    <div class="grid gap-4">
+                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label for="cardNumber" class="sr-only"
+                            >Card Number</label
+                          >
+                          <input
+                            type="text"
+                            name="cardNumber"
+                            id="cardNumber"
+                            class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
+                            placeholder="Card number"
+                            required
+                          />
+                        </div>
+
+                        <div>
+                          <label for="cardOwner" class="sr-only"
+                            >Card owner</label
+                          >
+                          <input
+                            type="text"
+                            name="cardOwner"
+                            id="cardOwner"
+                            class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
+                            placeholder="Card owner"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label for="dateOfExpiry" class="sr-only">Email</label>
+                        <input
+                          type="email"
+                          name="dateOfExpiry"
+                          id="dateOfExpiry"
+                          class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label for="confirmCardEmail" class="sr-only"
+                          >Confirm e-mail</label
+                        >
+                        <input
+                          type="email"
+                          name="confirmCardEmail"
+                          id="confirmCardEmail"
+                          class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
+                          placeholder="Confirm email"
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label for="cardPhoneNumber" class="sr-only"
+                          >Phone Number</label
+                        >
+                        <input
+                          type="tel"
+                          name="cardPhoneNumber"
+                          id="cardPhoneNumber"
+                          class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
+                          placeholder="Phone number"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End Card Information Section -->
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mt-6">
+                  <button
+                    type="submit"
+                    class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-[30px] border border-transparent bg-[#1ECB15] text-white transition-colors hover:bg-green-600 disabled:opacity-50 disabled:pointer-events-none"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <th:block th:insert="~{fragments/footer :: footer}"></th:block>
   </body>
 </html>

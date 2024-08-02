@@ -16,9 +16,6 @@ public class UserRowMapper implements RowMapper<User> {
         user.setEmail(rs.getString("email"));
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password"));
-        user.setPhoneNumber(rs.getString("phone_number"));
-        user.setAddress(rs.getString("address"));
-        user.setCity(rs.getString("city"));
         user.setCreatedAt(rs.getTimestamp("created_at"));
         user.setEmailVerified(rs.getBoolean("email_verified"));
         user.setConfirmationToken(rs.getString("confirmation_token"));
