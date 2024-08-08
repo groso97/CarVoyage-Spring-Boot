@@ -1,5 +1,7 @@
 package com.project.CarVoyage.classes.car;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -21,4 +23,6 @@ public interface CarRepository {
     List<Car> findByTransmissionType(String transmissionType);
 
     List<Car> findBySeats(int seats);
+
+    List<Car> findAvailableCars(int locationId, LocalDate pickUpDate, LocalDate dropOffDate);
 }

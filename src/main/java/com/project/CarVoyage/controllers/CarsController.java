@@ -1,8 +1,14 @@
 package com.project.CarVoyage.controllers;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties.Http;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +17,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.CarVoyage.classes.car.Car;
 import com.project.CarVoyage.classes.car.CarRepository;
+import com.project.CarVoyage.classes.user.User;
+import com.project.CarVoyage.classes.user.UserRepository;
+import com.stripe.exception.StripeException;
+import com.stripe.model.checkout.Session;
+import com.stripe.param.checkout.SessionCreateParams;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class CarsController {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private CarRepository carRepository;
@@ -56,9 +72,62 @@ public class CarsController {
     }
 
     @GetMapping("/cars/{carId}")
-    public String getCarDetailsPage(Model model, @PathVariable int carId) {
+    public String getCarDetailsPage(Model model, @PathVariable int carId, HttpSession httpSession) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = userRepository.findByUsername(username);
+
         Car car = carRepository.findById(carId);
+
+        LocalDate pickUpDate = (LocalDate) httpSession.getAttribute("pickUpDate");
+        LocalDate dropOffDate = (LocalDate) httpSession.getAttribute("dropOffDate");
+
+        int totalAmount = (int) (car.getDailyRate() * ChronoUnit.DAYS.between(pickUpDate, dropOffDate));
+
+        model.addAttribute("totalAmount", totalAmount);
+        model.addAttribute("pickUpDate", pickUpDate);
+        model.addAttribute("dropOffDate", dropOffDate);
+
         model.addAttribute("car", car);
+        model.addAttribute("user", user);
         return "car";
+    }
+
+    @GetMapping("/checkout/{carId}")
+    public String createCheckoutSession(@PathVariable int carId, HttpSession httpSession)
+            throws StripeException {
+
+        Car car = carRepository.findById(carId);
+
+        LocalDate pickUpDate = (LocalDate) httpSession.getAttribute("pickUpDate");
+        LocalDate dropOffDate = (LocalDate) httpSession.getAttribute("dropOffDate");
+        int numberOfDays = (int) ChronoUnit.DAYS.between(pickUpDate, dropOffDate);
+
+        SessionCreateParams.LineItem lineItem = SessionCreateParams.LineItem.builder()
+                .setPriceData(SessionCreateParams.LineItem.PriceData.builder()
+                        .setCurrency("eur")
+                        .setUnitAmount((long) (car.getDailyRate() * numberOfDays * 100))
+                        .setProductData(SessionCreateParams.LineItem.PriceData.ProductData.builder()
+                                .setName(car.getMake() + ' ' + car.getModel())
+                                .build())
+                        .build())
+                .setQuantity((long) 1)
+                .build();
+
+        SessionCreateParams params = SessionCreateParams.builder()
+                .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
+                .setMode(SessionCreateParams.Mode.PAYMENT)
+                .setSuccessUrl("http://localhost:8090/?success")
+                .setCancelUrl("http://localhost:8090/")
+                .addLineItem(lineItem)
+                .setShippingAddressCollection(
+                        SessionCreateParams.ShippingAddressCollection.builder()
+                                .addAllowedCountry(SessionCreateParams.ShippingAddressCollection.AllowedCountry.HR)
+                                .build())
+                .build();
+
+        Session session = Session.create(params);
+
+        return "redirect:" + session.getUrl();
     }
 }

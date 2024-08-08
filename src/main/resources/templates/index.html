@@ -5,6 +5,9 @@
       th:insert="~{fragments/head :: head(title='CarVoyage')}"
     ></th:block>
     <script th:src="@{/js/index.js}" defer></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/preline@2.4.1/dist/preline.min.js
+"></script>
   </head>
   <body>
     <th:block th:insert="~{fragments/header :: header}"></th:block>
@@ -37,9 +40,8 @@
           </h3>
 
           <form
-            action=""
-            name=""
-            method=""
+            th:action="@{/search}"
+            method="GET"
             class="w-full flex flex-col mt-[15px]"
           >
             <div class="flex">
@@ -51,28 +53,45 @@
                 <select
                   class="border-solid border-[2px] rounded-[5px] mt-[5px] h-[6dvh] pl-[5px]"
                   id="pick-up"
+                  name="location"
                 >
-                  <option value="" selected>-------</option>
-                  <option>Zagreb</option>
-                  <option>Split</option>
-                  <option>Rijeka</option>
+                  <option value="" selected disabled>
+                    Select your desired location
+                  </option>
+                  <option value="1">Zagreb</option>
+                  <option value="3">Split</option>
+                  <option value="2">Rijeka</option>
                 </select>
               </div>
 
               <div class="flex flex-col w-1/2 ml-[10px]">
-                <label class="flex mb-[5px]" for="date-time">
+                <label class="flex mb-[5px]" for="pick-up-date">
                   <span class="text-[#1ECB15] align-middle mr-[2px]">*</span>
-                  Date and time of pick-up and drop-off
+                  Date and time of pick-up
                 </label>
                 <input
                   class="border-solid border-[2px] rounded-[5px] mt-[5px] h-[6dvh] pl-[5px]"
-                  type="datetime-local"
-                  id="date-time"
+                  type="date"
+                  id="pick-up-date"
+                  name="pickUpDate"
+                />
+              </div>
+
+              <div class="flex flex-col w-1/2 ml-[10px]">
+                <label class="flex mb-[5px]" for="drop-off-date">
+                  <span class="text-[#1ECB15] align-middle mr-[2px]">*</span>
+                  Date and time of drop-off
+                </label>
+                <input
+                  class="border-solid border-[2px] rounded-[5px] mt-[5px] h-[6dvh] pl-[5px]"
+                  type="date"
+                  id="drop-off-date"
+                  name="dropOffDate"
                 />
               </div>
             </div>
             <button
-              type="button"
+              type="submit"
               class="bg-[#1ECB15] hover:bg-green-600 transition-colors w-full mt-[20px] py-3 px-4 flex justify-center items-center gap-x-2 font-semibold rounded-lg border border-transparent text-white disabled:opacity-50 disabled:pointer-events-none"
             >
               Search<svg

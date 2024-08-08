@@ -9,7 +9,6 @@ public class User {
     private String email;
     private String username;
     private String password;
-
     private Timestamp createdAt;
     private boolean emailVerified;
     private String confirmationToken;
@@ -85,5 +84,4 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-
 }

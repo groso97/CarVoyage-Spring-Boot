@@ -8,7 +8,6 @@ public class Car {
     private String color;
     private String licensePlate;
     private int mileage;
-    private String status;
     private double dailyRate;
     private int locationId;
     private String fuelType;
@@ -73,14 +72,6 @@ public class Car {
 
     public void setMileage(int mileage) {
         this.mileage = mileage;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public double getDailyRate() {

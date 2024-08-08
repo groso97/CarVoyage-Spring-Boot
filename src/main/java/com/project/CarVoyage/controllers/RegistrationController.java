@@ -36,8 +36,7 @@ public class RegistrationController {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    private EmailService emailService; // Ako koristiš EmailService za slanje
-    // emailova
+    private EmailService emailService;
 
     @GetMapping("/registration")
     public String getRegistrationPage() {
@@ -54,13 +53,11 @@ public class RegistrationController {
             @RequestParam(required = false) String termsAccepted,
             RedirectAttributes redirectAttributes) {
 
-        // Provjera prihvaćanja uvjeta
         if (termsAccepted == null) {
             redirectAttributes.addFlashAttribute("errorMessage", "You must accept the terms and conditions.");
             return "redirect:/registration";
         }
 
-        // Provjera postojećih korisnika
         User existingUserByEmail = userRepository.findByEmail(email);
         if (existingUserByEmail != null) {
             redirectAttributes.addFlashAttribute("errorMessage", "Email is already in use.");
@@ -73,13 +70,11 @@ public class RegistrationController {
             return "redirect:/registration";
         }
 
-        // Provjera lozinki
         if (!password.equals(confirmPassword)) {
             redirectAttributes.addFlashAttribute("errorMessage", "Passwords do not match.");
             return "redirect:/registration";
         }
 
-        // Kreiranje novog korisnika
         User user = new User();
         user.setFirstName(firstName);
         user.setLastName(lastName);
@@ -89,14 +84,11 @@ public class RegistrationController {
 
         user.setEmailVerified(false);
 
-        // Generiranje tokena za verifikaciju
         String token = UUID.randomUUID().toString();
         user.setConfirmationToken(token);
 
-        // Spremanje korisnika u bazu
         userRepository.saveUser(user);
 
-        // Ako koristiš EmailService za slanje emailova, otkomentiraj sljedeće linije
         String confirmationLink = "http://localhost:8090/confirm?token=" + token;
         emailService.sendMessage(
                 user.getEmail(),
@@ -116,21 +108,18 @@ public class RegistrationController {
     @GetMapping("/confirm")
     public String confirmEmail(@RequestParam String token, RedirectAttributes redirectAttributes) {
 
-        // Pronalaženje korisnika prema tokenu
         User user = userRepository.findByConfirmationToken(token);
         if (user == null) {
             redirectAttributes.addFlashAttribute("errorMessage", "Invalid email verification token.");
             return "redirect:/registration";
         }
 
-        // Provjera da li je email već verificiran
         if (user.isEmailVerified()) {
             redirectAttributes.addFlashAttribute("infoMessage",
                     "Email address is already verified. You can now log in.");
             return "redirect:/registration";
         }
 
-        // Verifikacija emaila
         user.setEmailVerified(true);
         userRepository.updateEmailVerification(user);
 

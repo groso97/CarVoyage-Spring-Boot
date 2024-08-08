@@ -44,24 +44,35 @@ nextBtn.addEventListener("click", () => {
 updateCarousel(); // Initial call to set the correct state of the buttons
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
-    // Postavi trenutni datum i vrijeme
-    const dateTimeInput = document.getElementById("date-time");
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const day = String(now.getDate()).padStart(2, "0");
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
+  const pickUpDateInput = document.getElementById("pick-up-date");
+  const dropOffDateInput = document.getElementById("drop-off-date");
 
-    const currentDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
-    dateTimeInput.value = currentDateTime;
+  // Postavi trenutni datum za pick-up i drop-off
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  const currentDate = `${year}-${month}-${day}`;
 
-    // Onemogući izbor prošlih datuma i vremena
-    dateTimeInput.min = currentDateTime;
+  pickUpDateInput.value = currentDate;
+  pickUpDateInput.min = currentDate;
+
+  dropOffDateInput.value = currentDate;
+  dropOffDateInput.min = currentDate;
+
+  // Ažuriraj minimalni datum za drop-off kada se promeni pick-up datum
+  pickUpDateInput.addEventListener("change", function () {
+      const pickUpDate = new Date(pickUpDateInput.value);
+      const minDropOffDate = pickUpDate.toISOString().split("T")[0];
+      dropOffDateInput.min = minDropOffDate;
+
+      // Ako je trenutni drop-off datum manji od novog pick-up datuma, postavi ga na minDropOffDate
+      if (dropOffDateInput.value < minDropOffDate) {
+          dropOffDateInput.value = minDropOffDate;
+      }
   });
-
+});
 
 
   function showCategory(category) {

@@ -26,7 +26,6 @@ CREATE TABLE cars (
     color VARCHAR(20),
     license_plate VARCHAR(20) NOT NULL UNIQUE,
     mileage INT,
-    status ENUM('available', 'rented') DEFAULT 'available',
     daily_rate DECIMAL(10, 2) NOT NULL,
     location_id INT,
     image VARCHAR(255) NOT NULL,

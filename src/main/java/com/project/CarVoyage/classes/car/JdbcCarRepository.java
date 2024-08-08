@@ -1,5 +1,7 @@
 package com.project.CarVoyage.classes.car;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +60,14 @@ public class JdbcCarRepository implements CarRepository {
     public List<Car> findBySeats(int seats) {
         String sql = "SELECT * FROM cars WHERE seats = ?";
         return jdbcTemplate.query(sql, new CarRowMapper(), seats);
+    }
+
+    public List<Car> findAvailableCars(int locationId, LocalDate dateFrom, LocalDate dateTo) {
+        String sql = "SELECT * FROM cars c WHERE c.location_id = ? " +
+                "AND c.car_id NOT IN (" +
+                "SELECT r.car_id FROM reservations r " +
+                "WHERE r.start_date < ? AND r.end_date > ?)";
+
+        return jdbcTemplate.query(sql, new CarRowMapper(), locationId, dateTo, dateFrom);
     }
 }

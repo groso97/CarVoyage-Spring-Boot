@@ -110,7 +110,7 @@
               th:alt="${car.make + ' ' + car.model}"
             />
           </div>
-          <div class="">
+          <div>
             <h3
               class="text-center"
               th:text="${car.make + ' ' + car.model}"
@@ -309,15 +309,15 @@
                 ></p>
               </li>
             </ul>
-            <!-- <div class="mt-[16px]">
-              <p
-                th:text="${#numbers.formatDecimal(car.dailyRate, 0, 0) + '€'} + ' / day'"
-                class="text-center text-2xl font-bold text-gray-900 mt-[30px]"
-              ></p>
-            </div> -->
 
             <div class="mt-[16px]">
-              <form th:action="@{/contact}" method="POST" class="w-full">
+              <form
+                sec:authorize="isAuthenticated()"
+                th:action="@{'/checkout/' + ${car.carId}}"
+                method="GET"
+                class="w-full"
+              >
+                <input th:value="${car.carId}" type="hidden" />
                 <div class="mt-[30px] grid lg:grid-cols-2 gap-6 lg:gap-16">
                   <!-- Personal Information Section -->
                   <div
@@ -329,157 +329,39 @@
                     <div class="grid gap-4">
                       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label for="firstName" class="sr-only"
-                            >First Name</label
-                          >
-                          <input
-                            type="text"
-                            name="firstName"
-                            id="firstName"
-                            class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
-                            placeholder="First Name"
-                            required
-                          />
+                          <p>Username</p>
+                          <p th:text="${user.username}"></p>
+                          <p>First name</p>
+                          <p th:text="${user.firstName}"></p>
+                          <p>Last name</p>
+                          <p th:text="${user.lastName}"></p>
+                          <p>Email</p>
+                          <p th:text="${user.email}"></p>
                         </div>
-
-                        <div>
-                          <label for="lastName" class="sr-only"
-                            >Last Name</label
-                          >
-                          <input
-                            type="text"
-                            name="lastName"
-                            id="lastName"
-                            class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
-                            placeholder="Last Name"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label for="email" class="sr-only">Email</label>
-                        <input
-                          type="email"
-                          name="email"
-                          id="email"
-                          autocomplete="email"
-                          class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
-                          placeholder="Email"
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <label for="confirmEmail" class="sr-only"
-                          >Confirm e-mail</label
-                        >
-                        <input
-                          type="email"
-                          name="confirmEmail"
-                          id="confirmEmail"
-                          class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
-                          placeholder="Confirm email"
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <label for="phoneNumber" class="sr-only"
-                          >Phone Number</label
-                        >
-                        <input
-                          type="tel"
-                          name="phoneNumber"
-                          id="phoneNumber"
-                          class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
-                          placeholder="Phone number"
-                          required
-                        />
                       </div>
                     </div>
                   </div>
                   <!-- End Personal Information Section -->
 
-                  <!-- Card Information Section -->
                   <div
                     class="flex flex-col border border-[#a5dfa2] rounded-[30px] sm:p-6 lg:p-8"
                   >
                     <h2 class="mb-8 mt-4 text-xl font-semibold text-gray-800">
-                      Card information
+                      Reservation info
                     </h2>
                     <div class="grid gap-4">
                       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label for="cardNumber" class="sr-only"
-                            >Card Number</label
-                          >
-                          <input
-                            type="text"
-                            name="cardNumber"
-                            id="cardNumber"
-                            class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
-                            placeholder="Card number"
-                            required
-                          />
+                          <p>Reservation from:</p>
+                          <p th:text="${pickUpDate}"></p>
+                          <p>Reservation to:</p>
+                          <p th:text="${dropOffDate}"></p>
+                          <p>Total price:</p>
+                          <p th:text="${totalAmount + ' €'}"></p>
                         </div>
-
-                        <div>
-                          <label for="cardOwner" class="sr-only"
-                            >Card owner</label
-                          >
-                          <input
-                            type="text"
-                            name="cardOwner"
-                            id="cardOwner"
-                            class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
-                            placeholder="Card owner"
-                            required
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label for="dateOfExpiry" class="sr-only">Email</label>
-                        <input
-                          type="email"
-                          name="dateOfExpiry"
-                          id="dateOfExpiry"
-                          class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <label for="confirmCardEmail" class="sr-only"
-                          >Confirm e-mail</label
-                        >
-                        <input
-                          type="email"
-                          name="confirmCardEmail"
-                          id="confirmCardEmail"
-                          class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
-                          placeholder="Confirm email"
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <label for="cardPhoneNumber" class="sr-only"
-                          >Phone Number</label
-                        >
-                        <input
-                          type="tel"
-                          name="cardPhoneNumber"
-                          id="cardPhoneNumber"
-                          class="py-3 px-4 block w-full border border-[#a5dfa2] rounded-[30px] text-sm focus:border-[#1ECB15] focus:ring-[#1ECB15] disabled:opacity-50 disabled:pointer-events-none"
-                          placeholder="Phone number"
-                          required
-                        />
                       </div>
                     </div>
                   </div>
-                  <!-- End Card Information Section -->
                 </div>
 
                 <!-- Submit Button -->
