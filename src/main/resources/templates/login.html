@@ -10,6 +10,38 @@
     <section
       class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
     >
+      <div
+        th:if="${param.error}"
+        x-data="{ show: true }"
+        x-show="show"
+        x-init="setTimeout(() => { show = false; history.replaceState({}, document.title, window.location.pathname); }, 5000)"
+        x-transition:leave="transition ease-out duration-1000"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        class="gap-2 absolute top-0 flex items-center w-full z-10 p-4 mb-4 text-sm text-red-700 border border-red-300 rounded-[30px] bg-red-50 mt-[4.8rem]"
+        role="alert"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+
+        <span class="sr-only">Error</span>
+        <div>
+          <span class="font-medium"
+            >Incorrect username or password. Please try again.</span
+          >
+        </div>
+      </div>
+
       <!--flash message for success-->
       <div
         th:if="${successMessage}"
@@ -34,6 +66,7 @@
             d="M512 64a448 448 0 1 1 0 896a448 448 0 0 1 0-896m-55.808 536.384l-99.52-99.584a38.4 38.4 0 1 0-54.336 54.336l126.72 126.72a38.27 38.27 0 0 0 54.336 0l262.4-262.464a38.4 38.4 0 1 0-54.272-54.336z"
           />
         </svg>
+
         <span class="sr-only">Success</span>
         <div>
           <span class="font-medium" th:text="${successMessage}"></span>
@@ -80,12 +113,10 @@
                 class="border border-[#a5dfa2] text-[#333333] text-sm rounded-[30px] focus:border-[#1ECB15] focus:ring-[#1ECB15] block w-full p-2.5"
                 placeholder="John Doe"
                 required
-                aria-describedby="email-error"
+                aria-describedby="username-error"
               />
-              <p class="hidden text-xs text-red-600 mt-2" id="email-error">
-                Please include a valid username
-              </p>
             </div>
+
             <div>
               <div class="flex justify-between items-center">
                 <label
@@ -108,10 +139,8 @@
                 required
                 aria-describedby="password-error"
               />
-              <p class="hidden text-xs text-red-600 mt-2" id="password-error">
-                8+ characters required
-              </p>
             </div>
+
             <div class="flex items-start">
               <div class="flex items-center h-[22px]">
                 <input
@@ -127,6 +156,7 @@
                 >
               </div>
             </div>
+
             <button
               type="submit"
               class="w-full py-3 px-4 flex justify-center items-center font-semibold rounded-[30px] text-white bg-[#1ECB15] hover:bg-[#179510] transition-colors"

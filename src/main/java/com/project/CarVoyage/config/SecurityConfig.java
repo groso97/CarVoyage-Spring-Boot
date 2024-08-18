@@ -37,7 +37,7 @@ public class SecurityConfig {
                                                 .requestMatchers("/", "/login", "/registration", "/cars/**",
                                                                 "/contact", "/offices", "/confirm",
                                                                 "/termsAndConditions", "/forgotten-password",
-                                                                "reset-password", "/search")
+                                                                "reset-password", "/search", "/webhook")
                                                 .permitAll()
                                                 .anyRequest().authenticated())
                                 .formLogin((formLogin) -> formLogin

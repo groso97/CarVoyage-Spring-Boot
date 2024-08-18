@@ -19,6 +19,8 @@ public class JdbcUserRepository implements UserRepository {
         return users.isEmpty() ? null : users.get(0);
     }
 
+
+
     @Override
     public User findByEmail(String email) {
         String sql = "SELECT user_id, first_name, last_name, email, username, password, created_at, email_verified, confirmation_token FROM users WHERE email = ?";

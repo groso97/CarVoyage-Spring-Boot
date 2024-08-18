@@ -23,11 +23,22 @@ public class IndexController {
     private CarRepository carRepository;
 
     @GetMapping("/")
-    public String getIndexPage(Model model) {
+    public String getIndexPage(HttpSession session, Model model) {
+        // Retrieve the infoMessage from session and then remove it
+        String infoMessage = (String) session.getAttribute("infoMessage");
+        session.removeAttribute("infoMessage");
+
         List<Car> cars = carRepository.findAll();
         model.addAttribute("cars", cars);
+
+        // Pass the infoMessage to the model only if it exists
+        if (infoMessage != null) {
+            model.addAttribute("message", infoMessage);
+        }
+
         return "index";
     }
+
 
     @GetMapping("/search")
     public String getIndexSearchCars(

@@ -7,13 +7,14 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     email_verified BOOLEAN DEFAULT FALSE,
-    confirmation_token VARCHAR(255) DEFAULT NULL;
+    confirmation_token VARCHAR(255) DEFAULT NULL
 );
 
 CREATE TABLE locations(
 	location_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50),
     address VARCHAR(50),
+    email VARCHAR (50,)
     phone_number VARCHAR(50),
     image VARCHAR(255) NOT NULL
     );
@@ -33,7 +34,7 @@ CREATE TABLE cars (
     transmission_type VARCHAR(20),
     seats INT,
     doors INT,
-    air_conditioning BOOLEAN,
+    air_conditioning VARCHAR(20),
     tank_size INT,
     FOREIGN KEY(location_id) REFERENCES locations(location_id)
 );
@@ -52,13 +53,4 @@ CREATE TABLE reservations (
     FOREIGN KEY (car_id) REFERENCES cars(car_id)
 );
 
-CREATE TABLE payments (
-    payment_id INT AUTO_INCREMENT PRIMARY KEY,
-    reservation_id INT,
-    amount DECIMAL(10, 2) NOT NULL,
-    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    payment_method ENUM('credit_card', 'debit_card', 'paypal', 'bank_transfer') NOT NULL,
-    status ENUM('pending', 'completed', 'failed') DEFAULT 'pending',
-    FOREIGN KEY (reservation_id) REFERENCES reservations(reservation_id)
-);
 

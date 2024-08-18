@@ -9,3 +9,10 @@ INSERT INTO cars (make, model, year, color, license_plate, mileage, daily_rate, 
 ('Peugeot', '5008-Automatic', 2022, 'Gray', 'RI-9900-HH', 24500, 65.00, 2, 'Peugeot-5008-Automatic_350.jpg', 'Diesel', 'Automatic', 7, 5, 'A/C', 65.00),
 ('Renault', 'Captur', 2023, 'Silver', 'RI-2233-II', 30000, 50.00, 2, 'Renault-Captur_350.jpg', 'Petrol', 'Manual', 5, 5, 'A/C', 48.00),
 ('Renault', 'Clio', 2024, 'Gray', 'RI-4455-JJ', 2000, 45.00, 2, 'Renault-Clio_350.jpg', 'Petrol', 'Manual', 5, 5, 'A/C', 45.00);
+
+
+INSERT INTO locations (name,address,phone_number,image) VALUES('Zagreb', 'Ilica 21', '+385 1 122 2221', 'zagreb.jpg');
+INSERT INTO locations (name,address,phone_number,image) VALUES('Rijeka', 'Hamec 10', '+385 1 122 2222', 'rijeka.jpg');
+INSERT INTO locations (name,address,phone_number,image) VALUES('Split', 'Tomića Stine 22', '+385 1 122 2223', 'split.jpg');
+
+INSERT INTO reservations (user_id, car_id, start_date, end_date, total_amount, status) VALUES (1, 11, '2024-08-18', '2024-08-21', 150, 'pending');

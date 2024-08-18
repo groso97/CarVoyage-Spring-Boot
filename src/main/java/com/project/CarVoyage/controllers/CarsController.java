@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.util.Map;
+import java.util.HashMap;
 
 import com.project.CarVoyage.classes.car.Car;
 import com.project.CarVoyage.classes.car.CarRepository;
@@ -73,25 +75,32 @@ public class CarsController {
 
     @GetMapping("/cars/{carId}")
     public String getCarDetailsPage(Model model, @PathVariable int carId, HttpSession httpSession) {
+        // Provjeri je li postavljen pickUpDate i dropOffDate u sesiji
+        LocalDate pickUpDate = (LocalDate) httpSession.getAttribute("pickUpDate");
+        LocalDate dropOffDate = (LocalDate) httpSession.getAttribute("dropOffDate");
+    
+        if (pickUpDate == null || dropOffDate == null) {
+            // Ako datumi nisu postavljeni, preusmjeri korisnika na početnu stranicu s porukom
+            httpSession.setAttribute("infoMessage", "You must first select a location, pick-up date, and drop-off date.");
+            return "redirect:/";
+        }
+    
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User user = userRepository.findByUsername(username);
-
+    
         Car car = carRepository.findById(carId);
-
-        LocalDate pickUpDate = (LocalDate) httpSession.getAttribute("pickUpDate");
-        LocalDate dropOffDate = (LocalDate) httpSession.getAttribute("dropOffDate");
-
+    
         int totalAmount = (int) (car.getDailyRate() * ChronoUnit.DAYS.between(pickUpDate, dropOffDate));
-
+    
         model.addAttribute("totalAmount", totalAmount);
         model.addAttribute("pickUpDate", pickUpDate);
         model.addAttribute("dropOffDate", dropOffDate);
-
         model.addAttribute("car", car);
         model.addAttribute("user", user);
         return "car";
     }
+    
 
     @GetMapping("/checkout/{carId}")
     public String createCheckoutSession(@PathVariable int carId, HttpSession httpSession)
@@ -102,6 +111,18 @@ public class CarsController {
         LocalDate pickUpDate = (LocalDate) httpSession.getAttribute("pickUpDate");
         LocalDate dropOffDate = (LocalDate) httpSession.getAttribute("dropOffDate");
         int numberOfDays = (int) ChronoUnit.DAYS.between(pickUpDate, dropOffDate);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = userRepository.findByUsername(username);
+        
+
+        Map<String, String> metadata = new HashMap<>();
+        metadata.put("user_id", String.valueOf(user.getUserId()));
+        metadata.put("car_id", String.valueOf(carId));
+        metadata.put("start_date", pickUpDate.toString());
+        metadata.put("end_date", dropOffDate.toString());
+        metadata.put("total_amount", String.valueOf(numberOfDays * car.getDailyRate()));
 
         SessionCreateParams.LineItem lineItem = SessionCreateParams.LineItem.builder()
                 .setPriceData(SessionCreateParams.LineItem.PriceData.builder()
@@ -120,6 +141,7 @@ public class CarsController {
                 .setSuccessUrl("http://localhost:8090/?success")
                 .setCancelUrl("http://localhost:8090/")
                 .addLineItem(lineItem)
+                .putAllMetadata(metadata)
                 .setShippingAddressCollection(
                         SessionCreateParams.ShippingAddressCollection.builder()
                                 .addAllowedCountry(SessionCreateParams.ShippingAddressCollection.AllowedCountry.HR)

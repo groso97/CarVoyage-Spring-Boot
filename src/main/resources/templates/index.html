@@ -10,6 +10,8 @@ https://cdn.jsdelivr.net/npm/preline@2.4.1/dist/preline.min.js
 "></script>
   </head>
   <body>
+
+
     <th:block th:insert="~{fragments/header :: header}"></th:block>
     <div class="relative w-full h-[100dvh] overflow-hidden hero-video -mt-16">
       <video
@@ -22,6 +24,7 @@ https://cdn.jsdelivr.net/npm/preline@2.4.1/dist/preline.min.js
         <source src="img/hero-video3.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      
       <div
         class="relative z-10 flex flex-col items-center justify-center w-full h-full bg-black bg-opacity-50 pl-4 pr-4"
       >
@@ -35,10 +38,11 @@ https://cdn.jsdelivr.net/npm/preline@2.4.1/dist/preline.min.js
         <div
           class="bg-white w-[1000px] mt-[30px] rounded-[10px] p-[12px] flex flex-col"
         >
+        
           <h3 class="text-[20px] text-[#333333] font-medium">
             Find rent a car vehicle
           </h3>
-
+          
           <form
             th:action="@{/search}"
             method="GET"
@@ -113,6 +117,35 @@ https://cdn.jsdelivr.net/npm/preline@2.4.1/dist/preline.min.js
         </div>
       </div>
     </div>
+    <div
+    th:if="${message}"
+    x-data="{ show: true }"
+    x-show="show"
+    x-init="setTimeout(() => show = false, 5000)"
+    x-transition:leave="transition ease-out duration-1000"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    class="absolute top-0 flex items-center w-full z-10 p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 mt-[4.8rem]"
+    role="alert"
+>
+    <svg
+        class="flex-shrink-0 inline w-4 h-4 mr-3"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+    >
+        <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-1 1v4a1 1 0 002 0v-4a1 1 0 00-1-1zm0 8a1 1 0 100-2 1 1 0 000 2z"
+            clip-rule="evenodd"
+        />
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+        <span class="font-medium" th:text="${message}"></span>
+    </div>
+</div>
+
 
     <div
       class="first-section w-full flex justify-center items-center bg-[#F9F9F9]"
