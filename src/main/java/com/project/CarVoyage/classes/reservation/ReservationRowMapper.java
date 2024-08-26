@@ -18,6 +18,11 @@ public class ReservationRowMapper implements RowMapper<Reservation> {
         reservation.setTotalAmount(rs.getDouble("total_amount"));
         reservation.setStatus(rs.getString("status"));
         reservation.setCreatedAt(rs.getTimestamp("created_at"));
+
+        //ovo sam naknadno ubacio u reservation klasu jer sam morao prikazati na userprofile koji auto je korisnik rezervirao
+        reservation.setCarMake(rs.getString("car_make"));
+        reservation.setCarModel(rs.getString("car_model"));
+
         return reservation;
     }
 }

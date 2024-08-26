@@ -1,201 +1,191 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer components{
-
-
+@layer components {
   /*header*/
 
-/* Tailwind CSS classes */
-.nav-link {
-  @apply relative text-white transition-colors duration-300;
-}
+  /* Tailwind CSS classes */
+  .nav-link {
+    @apply relative text-white transition-colors duration-300;
+  }
 
-.nav-link::after {
-  content: '';
-  @apply absolute left-0 bg-[#1ECB15] transition-all duration-300;
-  bottom: 5px; 
-  width: 0;
-  height: 2px;
-}
+  .nav-link::after {
+    content: "";
+    @apply absolute left-0 bg-[#1ECB15] transition-all duration-300;
+    bottom: 5px;
+    width: 0;
+    height: 2px;
+  }
 
-.nav-link:hover::after, 
-.nav-link.active::after{
-  width: 100%;
-}
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
 
-.nav-link:hover, .nav-link.active {
-  @apply text-white;
-}
+  .nav-link:hover,
+  .nav-link.active {
+    @apply text-white;
+  }
 
-.nav-link-2 {
-  @apply relative text-gray-800 transition-colors duration-300;
-}
+  .nav-link-2 {
+    @apply relative text-gray-800 transition-colors duration-300;
+  }
 
-.nav-link-2::after {
-  content: '';
-  @apply absolute left-0 bg-[#1ECB15] transition-all duration-300;
-  bottom: 5px; 
-  width: 0;
-  height: 2px;
-}
+  .nav-link-2::after {
+    content: "";
+    @apply absolute left-0 bg-[#1ECB15] transition-all duration-300;
+    bottom: 5px;
+    width: 0;
+    height: 2px;
+  }
 
-.nav-link-2:hover::after, 
-.nav-link-2.active::after {
-  width: 100%;
-}
+  .nav-link-2:hover::after,
+  .nav-link-2.active::after {
+    width: 100%;
+  }
 
-.nav-link-2:hover, 
-.nav-link-2.active {
-  @apply text-gray-800;
-}
+  .nav-link-2:hover,
+  .nav-link-2.active {
+    @apply text-gray-800;
+  }
 
-
-
-
-  
-  
-  h3{
-    color:#212529;
+  h3 {
+    color: #212529;
     font-weight: 700;
-    font-size:18px;
+    font-size: 18px;
   }
-  
-  h2{
-      color:#333333;
-      font-size:40px;
-      font-weight:700;
+
+  h2 {
+    color: #333333;
+    font-size: 40px;
+    font-weight: 700;
   }
-  
-  p{
-      color:#626262;
-      font-size:16px;
+
+  p {
+    color: #626262;
+    font-size: 16px;
   }
-  
-  .fleet-button,.addservices-button,.alloffices-button{
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #a5dfa2;
-      margin-top: 20px;
-      border-radius: 30px;
-      color:#1ECB15;
-      width: 200px;
-      height: 45px;
-      font-size: 16px;
-      font-weight: 600;
-  
+
+  .fleet-button,
+  .addservices-button,
+  .alloffices-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #a5dfa2;
+    margin-top: 20px;
+    border-radius: 30px;
+    color: #1ecb15;
+    width: 200px;
+    height: 45px;
+    font-size: 16px;
+    font-weight: 600;
   }
-  
-  .fleet-button:hover,.addservices-button:hover,.alloffices-button:hover{
-      border-color:#1ECB15;
+
+  .fleet-button:hover,
+  .addservices-button:hover,
+  .alloffices-button:hover {
+    border-color: #1ecb15;
   }
-  
-  .fleet-button svg, .addservices-button svg, .alloffices-button svg {
-      margin-left:10px;
-      margin-top:2px;
-  
+
+  .fleet-button svg,
+  .addservices-button svg,
+  .alloffices-button svg {
+    margin-left: 10px;
+    margin-top: 2px;
   }
-  
+
   /*carousel*/
   .carousel-wrapper {
-      position: relative;
-      overflow: hidden;
-    }
-    .carousel-inner {
-      display: flex;
-      transition: transform 0.5s ease;
-    }
-    .carousel-item {
-      min-width: 33.3%;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .car-image {
-      width: 80%;
-      height: auto;
-    }
-    .car-info {
-      text-align: center;
-      margin-top: 10px;
-    }
-    .car-price {
-      font-size: 1.2em;
-      color: #000;
-    }
+    position: relative;
+    overflow: hidden;
+  }
+  .carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  .carousel-item {
+    min-width: 33.3%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .car-image {
+    width: 80%;
+    height: auto;
+  }
+  .car-info {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .car-price {
+    font-size: 1.2em;
+    color: #000;
+  }
 
-    .book-now-btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #a5dfa2;
-      margin-top: 20px;
-      border-radius: 30px;
-      color:#1ECB15;
-      width: 200px;
-      height: 45px;
-      font-size: 16px;
-      font-weight: 600;
-    }
-    .book-now-btn:hover {
-      background-color: #1ECB15;
-      color:#FFFFFF;
-    }
-    .carousel-button {
-      border-radius: 30px;
-      background-color: #1ECB15; 
-      padding: 10px; 
-      width: 40px; 
-      height: 40px; 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .carousel-button:hover {
-      background-color: #179510;
-    }
+  .book-now-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #a5dfa2;
+    margin-top: 20px;
+    border-radius: 30px;
+    color: #1ecb15;
+    width: 200px;
+    height: 45px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .book-now-btn:hover {
+    background-color: #1ecb15;
+    color: #ffffff;
+  }
+  .carousel-button {
+    border-radius: 30px;
+    background-color: #1ecb15;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .carousel-button:hover {
+    background-color: #179510;
+  }
 
+  .sidebar-button {
+    @apply flex align-middle justify-start w-full text-left py-2 px-4 bg-[#1ECB15] text-white font-semibold rounded-[25px] mb-2;
+  }
 
-    .sidebar-button{
-      @apply flex align-middle justify-start w-full text-left py-2 px-4 bg-[#1ECB15] text-white font-semibold rounded-[25px] mb-2;
-    }
+  .sidebar-button svg {
+    @apply mr-[8px];
+  }
 
-    .sidebar-button svg {
-      @apply mr-[8px];
-    }
+  .faq-item {
+    @apply border-b border-gray-300 py-4;
+  }
 
-    .faq-item{
-      @apply border-b border-gray-300 py-4;
-    }
-    
-    .faq-question{
-      @apply text-lg font-medium text-left w-full text-[#333333];
-    }
+  .faq-question {
+    @apply text-lg font-medium text-left w-full text-[#333333];
+  }
 
-
-
-    /*offices.html*/
-    .office-btn {
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #a5dfa2;
-      margin-top: 10px;
-      border-radius: 30px;
-      color:#1ECB15;
-      width: 100px;
-      height: 30px;
-      font-size: 16px;
-      font-weight: 600;
-    }
-    .office-btn:hover {
-      background-color: #1ECB15;
-      color:#FFFFFF;
-    }
-
-
+  /*offices.html*/
+  .office-btn {
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #a5dfa2;
+    margin-top: 10px;
+    border-radius: 30px;
+    color: #1ecb15;
+    width: 100px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .office-btn:hover {
+    background-color: #1ecb15;
+    color: #ffffff;
+  }
 }
-
-  
-

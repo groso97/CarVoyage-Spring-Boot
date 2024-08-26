@@ -1,9 +1,7 @@
 package com.project.CarVoyage.config;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -39,11 +37,23 @@ public class EmailService {
         execute(() -> {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(to);
-            message.setSubject("Zaboravljena lozinka - CarVoyage");
-            message.setText("Odaberite poveznicu ispod kako biste poništili svoju lozinku:\n" + resetLink);
+            message.setSubject("Forgotten password - CarVoyage");
+            message.setText("Select a link below to reset your password:\n" + resetLink);
             emailSender.send(message);
         });
     }
+
+        // Nova metoda za slanje verifikacijskog emaila
+        public void sendVerificationEmail(String to, String confirmationLink) {
+            execute(() -> {
+                SimpleMailMessage message = new SimpleMailMessage();
+                message.setTo(to);
+                message.setSubject("Email address verification - CarVoyage");
+                message.setText("Please confirm your email address by clicking the following link:\n" + confirmationLink);
+                emailSender.send(message);
+            });
+        }
+    
 
     private void execute(Runnable task) {
         executorService.execute(task);

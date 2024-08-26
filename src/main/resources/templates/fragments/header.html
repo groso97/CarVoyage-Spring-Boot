@@ -1,7 +1,10 @@
 <header th:fragment="header">
   <section class="w-full px-6 pb-12 antialiased h-16">
     <div class="mx-auto max-w-7xl w-[1080px]">
-      <nav class="relative z-50 h-24 select-none" x-data="{ showMenu: false }">
+      <nav
+        class="relative z-50 h-24 select-none"
+        x-data="{ showMenu: false, showSettings: false }"
+      >
         <div
           class="container relative flex flex-wrap items-center h-16 justify-between mx-auto overflow-hidden font-medium md:overflow-visible lg:justify-between sm:px-4 md:px-2 lg:px-0"
         >
@@ -21,58 +24,93 @@
               class="flex-col w-full h-auto overflow-hidden bg-white rounded-lg md:bg-transparent md:overflow-visible md:rounded-none md:relative md:flex md:flex-row"
             >
               <div
-                class="flex flex-col items-start justify-center w-full space-x-6 text-center lg:space-x-8 md:w-2/3 md:mt-0 md:flex-row md:items-center"
+                class="flex flex-col items-start justify-center w-full text-center md:w-2/3 md:mt-0 md:flex-row md:items-center"
               >
                 <a
                   href="/"
-                  class="nav-link inline-block w-full py-2 mx-0 ml-6 font-medium text-left text-white md:ml-0 md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center"
+                  class="nav-link inline-block w-full py-2 mx-0 ml-6 font-medium text-left text-white md:ml-0 md:w-auto md:px-0 md:mx-4 lg:mx-5 md:text-center"
                   >Home</a
                 >
                 <a
                   href="/offices"
-                  class="nav-link inline-block w-full py-2 mx-0 font-medium text-left text-white md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center"
+                  class="nav-link inline-block w-full py-2 mx-0 font-medium text-left text-white md:w-auto md:px-0 md:mx-4 lg:mx-5 md:text-center"
                   >Offices</a
                 >
                 <a
                   href="/cars"
-                  class="nav-link inline-block w-full py-2 mx-0 font-medium text-left text-white md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center"
+                  class="nav-link inline-block w-full py-2 mx-0 font-medium text-left text-white md:w-auto md:px-0 md:mx-4 lg:mx-5 md:text-center"
                   >Cars</a
                 >
                 <a
                   href="/contact"
-                  class="nav-link inline-block w-full py-2 mx-0 font-medium text-left text-white md:w-auto md:px-0 md:mx-2 lg:mx-3 md:text-center"
+                  class="nav-link inline-block w-full py-2 mx-0 font-medium text-left text-white md:w-auto md:px-0 md:mx-4 lg:mx-5 md:text-center"
                   >Contact</a
                 >
               </div>
               <div
                 class="flex flex-col items-start justify-end w-full pt-4 md:items-center md:w-1/3 md:flex-row md:py-0"
               >
-                <!-- Prikaz korisničkog imena kao običan tekst kada je korisnik prijavljen -->
-                <span
-                  class="w-full px-6 py-2 mr-0 text-white md:px-3 md:mr-2 lg:mr-3 md:w-auto"
-                  sec:authorize="isAuthenticated()">
-                  <span sec:authentication="name"></span>
-                </span>
+                <!-- Display user name with settings icon when authenticated -->
+                <div class="relative">
+                  <span
+                    class="w-full px-6 py-2 mr-0 text-white md:px-3 md:mr-2 lg:mr-3 md:w-auto"
+                    sec:authorize="isAuthenticated()"
+                  >
+                    <span sec:authentication="name"></span>
+                    <!-- Settings icon (gear) -->
+                    <button
+                      @click="showSettings = !showSettings"
+                      class="ml-2 p-1 rounded"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="currentColor"
+                          fill-rule="evenodd"
+                          d="m17.653 10.35l2.056.336a.35.35 0 0 1 .291.343v1.913a.35.35 0 0 1-.288.342l-2.058.362a5.8 5.8 0 0 1-.49 1.185l1.217 1.69a.35.35 0 0 1-.036.45l-1.353 1.352a.35.35 0 0 1-.445.04l-1.707-1.198q-.566.315-1.193.5l-.363 2.048a.35.35 0 0 1-.343.287h-1.913a.35.35 0 0 1-.343-.29l-.34-2.039a6 6 0 0 1-1.197-.495l-1.694 1.186a.35.35 0 0 1-.446-.038L5.655 16.97a.35.35 0 0 1-.036-.448l1.197-1.674a6 6 0 0 1-.5-1.204l-2.029-.36A.35.35 0 0 1 4 12.942v-1.913c0-.17.123-.315.29-.343l2.03-.338q.183-.63.5-1.203L5.636 7.453a.35.35 0 0 1 .039-.445l1.352-1.352c.12-.12.31-.136.448-.037l1.68 1.2a6 6 0 0 1 1.196-.491l.333-2.036A.35.35 0 0 1 11.028 4h1.913c.17 0 .314.122.343.288l.359 2.047q.624.182 1.193.497l1.685-1.211a.35.35 0 0 1 .45.036l1.352 1.352c.12.12.136.308.039.446l-1.2 1.71q.31.565.49 1.185M9.565 12a2.435 2.435 0 1 0 4.87 0a2.435 2.435 0 0 0-4.87 0"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div
+                      x-show="showSettings"
+                      class="absolute right-0 w-48 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg"
+                      @click.away="showSettings = false"
+                    >
+                      <a
+                        th:href="@{/user/profile}"
+                        class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                        >Edit Profile</a
+                      >
+                      <!-- Add more options here if needed -->
+                    </div>
+                  </span>
+                </div>
                 <a
                   href="/logout"
                   class="nav-link w-full px-6 py-2 mr-0 transition-colors text-white md:px-3 md:mr-2 lg:mr-3 md:w-auto"
-                  sec:authorize="isAuthenticated()">
-                  Logout
-                </a>
-                
-                <!-- Prikaz opcija za prijavu i registraciju kada korisnik NIJE prijavljen -->
+                  sec:authorize="isAuthenticated()"
+                  >Logout</a
+                >
+
+                <!-- Display sign in and sign up options when NOT authenticated -->
                 <a
                   href="/login"
                   class="nav-link w-full px-6 py-2 mr-0 transition-colors text-white md:px-3 md:mr-2 lg:mr-3 md:w-auto"
-                  sec:authorize="!isAuthenticated()">
-                  Sign In
-                </a>
+                  sec:authorize="!isAuthenticated()"
+                  >Sign In</a
+                >
                 <a
                   href="/registration"
                   class="inline-flex items-center w-full px-6 py-3 text-sm font-medium leading-4 transition-colors text-white bg-[#1ECB15] md:w-auto md:rounded-full hover:bg-[#179510] focus:outline-none md:focus:ring-2 focus:ring-0 focus:ring-offset-2 focus:ring-gray-800"
-                  sec:authorize="!isAuthenticated()">
-                  Sign Up
-                </a>
+                  sec:authorize="!isAuthenticated()"
+                  >Sign Up</a
+                >
               </div>
             </div>
           </div>

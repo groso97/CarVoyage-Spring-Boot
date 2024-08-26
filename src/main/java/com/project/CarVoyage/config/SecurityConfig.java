@@ -30,10 +30,6 @@ public class SecurityConfig {
                                                 .disable()))
                                 .authorizeHttpRequests((auth) -> auth
                                                 .requestMatchers("/css/**", "/img/**", "/js/**").permitAll()
-
-                                                // dodat jos poslije stranice na koje ce se moc uvije kpristupit bez da
-                                                // sam
-                                                // ulogiran(aute sve)
                                                 .requestMatchers("/", "/login", "/registration", "/cars/**",
                                                                 "/contact", "/offices", "/confirm",
                                                                 "/termsAndConditions", "/forgotten-password",

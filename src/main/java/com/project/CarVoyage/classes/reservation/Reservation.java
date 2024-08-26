@@ -12,6 +12,8 @@ public class Reservation {
     private double totalAmount;
     private String status;
     private Timestamp createdAt;
+    private String carMake;
+    private String carModel;
 
     public int getReservationId() {
         return reservationId;
@@ -77,4 +79,19 @@ public class Reservation {
         this.createdAt = createdAt;
     }
 
+    public String getCarMake() {
+        return carMake;
+    }
+
+    public void setCarMake(String carMake) {
+        this.carMake = carMake;
+    }
+
+    public String getCarModel() {
+        return carModel;
+    }
+
+    public void setCarModel(String carModel) {
+        this.carModel = carModel;
+    }
 }

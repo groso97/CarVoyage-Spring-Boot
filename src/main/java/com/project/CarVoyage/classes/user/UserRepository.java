@@ -13,5 +13,5 @@ public interface UserRepository {
 
     void updatePassword(User user);
 
-
+    void deleteByUsername(String username);
 }

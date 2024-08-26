@@ -111,7 +111,6 @@ private void handleSuccessfulPayment(Session session) {
             emailContent.append("Početak najma: ").append(startDate.toString()).append("\n");
             emailContent.append("Kraj najma: ").append(endDate.toString()).append("\n");
             emailContent.append("Ukupno plaćeno: ").append(String.format("%.2f", totalAmount)).append(" ").append(session.getCurrency().toUpperCase()).append("\n\n");
-            emailContent.append("Ako imate bilo kakva pitanja ili trebate dodatne informacije, slobodno nas kontaktirajte na ").append(emailVlasnika).append(".\n\n");
             emailContent.append("Hvala vam još jednom i želimo vam sigurno i ugodno putovanje!\n");
             emailContent.append("Srdačno,\nCarVoyage tim");
 

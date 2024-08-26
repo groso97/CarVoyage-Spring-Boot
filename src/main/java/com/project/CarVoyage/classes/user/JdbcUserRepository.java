@@ -64,4 +64,10 @@ public class JdbcUserRepository implements UserRepository {
         String sql = "UPDATE users SET password = ? WHERE user_id = ?";
         jdbcTemplate.update(sql, user.getPassword(), user.getUserId());
     }
+
+    @Override
+    public void deleteByUsername(String username) {
+        String sql = "DELETE FROM users WHERE username = ?";
+        jdbcTemplate.update(sql, username);
+    }
 }
