@@ -10,11 +10,15 @@
     <th:block th:insert="~{fragments/header-ostatak :: header}"></th:block>
 
     <div class="first-section w-full flex justify-center items-center mt-[5vh]">
-      <div class="container flex w-[1100px] h-auto flex-col">
+      <div class="container flex w-full max-w-[1100px] flex-col px-4">
         <div class="offices w-full text-center">
-          <h2 class="text-[#333333] text-[40px] font-bold">Offices</h2>
+          <h2 class="text-[#333333] text-[32px] md:text-[40px] font-bold">
+            Offices
+          </h2>
           <div class="flex justify-center w-full">
-            <p class="w-[900px] mt-[12px]">
+            <p
+              class="w-full max-w-[900px] mt-[12px] text-[16px] md:text-[18px]"
+            >
               Welcome to CarVoyage, your trusted partner for car rentals in
               Croatia. We are proud to have a presence in three major cities,
               providing you with easy access to our services wherever you are.
@@ -81,12 +85,12 @@
 
         <div
           th:each="location : ${locations}"
-          class="w-full shadow-lg mb-[30px] rounded-[30px] overflow-hidden mt-[30px] flex border border-[#a5dfa2]"
+          class="w-full shadow-lg mb-[30px] rounded-[30px] overflow-hidden mt-[30px] flex flex-col md:flex-row border border-[#a5dfa2]"
         >
           <img
             th:src="${'/img/' + location.image}"
             th:alt="${location.name}"
-            class="w-[55%] object-cover"
+            class="w-full md:w-[55%] object-cover"
           />
           <div class="p-6 flex flex-col justify-center w-full md:w-1/2">
             <h2

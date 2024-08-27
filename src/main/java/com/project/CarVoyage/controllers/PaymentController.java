@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.CarVoyage.classes.car.Car;
+import com.project.CarVoyage.classes.car.CarRepository;
 import com.project.CarVoyage.classes.reservation.Reservation;
 import com.project.CarVoyage.classes.reservation.ReservationRepository;
 import com.stripe.exception.SignatureVerificationException;
@@ -32,8 +34,11 @@ public class PaymentController {
     @Value("${stripe.api.key}")
     private String stripeApiKey;
 
+
     @Autowired
     private ReservationRepository reservationRepository;
+    @Autowired
+    private CarRepository carRepository;
     @Autowired
     private JavaMailSender mailSender;
 
@@ -42,9 +47,6 @@ public class PaymentController {
     public ResponseEntity<String> handleStripeEvent(@RequestBody String payload,
             @RequestHeader("Stripe-Signature") String sigHeader) {
 
-                System.out.println("Primljen webhook zahtjev od Stripe-a");
-    System.out.println("Payload: " + payload);
-    System.out.println("Stripe-Signature: " + sigHeader);
         try {
             final Event event = Webhook.constructEvent(payload, sigHeader, stripeWebhook);
 
@@ -95,33 +97,35 @@ private void handleSuccessfulPayment(Session session) {
         // Spremamo rezervaciju u bazu podataka
         reservationRepository.saveReservation(reservation);
 
+        Car car = carRepository.findCarMakeAndModelById(carId);
+        String carName = car.getMake() + " " + car.getModel();
+
         // Slanje potvrde emailom korisniku
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(emailVlasnika);
             message.setTo(customerEmail);
-            message.setSubject("CarVoyage | Potvrda rezervacije vozila");
+            message.setSubject("CarVoyage | Confirmation of vehicle reservation");
 
             StringBuilder emailContent = new StringBuilder();
-            emailContent.append("Poštovani, \n\n");
-            emailContent.append("Zahvaljujemo vam što ste odabrali CarVoyage za vašu rent-a-car uslugu.\n");
-            emailContent.append("S velikim zadovoljstvom potvrđujemo vašu rezervaciju vozila.\n\n");
-            emailContent.append("Detalji vaše rezervacije:\n");
-            emailContent.append("Vozilo: ").append(session.getMetadata().get("car_name")).append("\n");
-            emailContent.append("Početak najma: ").append(startDate.toString()).append("\n");
-            emailContent.append("Kraj najma: ").append(endDate.toString()).append("\n");
-            emailContent.append("Ukupno plaćeno: ").append(String.format("%.2f", totalAmount)).append(" ").append(session.getCurrency().toUpperCase()).append("\n\n");
-            emailContent.append("Hvala vam još jednom i želimo vam sigurno i ugodno putovanje!\n");
-            emailContent.append("Srdačno,\nCarVoyage tim");
+            emailContent.append("Dear Customer, \n\n");
+            emailContent.append("Thank you for choosing CarVoyage for your car rental service.\n");
+            emailContent.append("We are pleased to confirm your vehicle reservation.\n\n");
+            emailContent.append("Your reservation details:\n");
+            emailContent.append("Vehicle: ").append(carName).append("\n");
+            emailContent.append("Rental start: ").append(startDate.toString()).append("\n");
+            emailContent.append("Rental end: ").append(endDate.toString()).append("\n");
+            emailContent.append("Total paid: ").append(String.format("%.2f", totalAmount)).append(" ").append(session.getCurrency().toUpperCase()).append("\n\n");
+            emailContent.append("Thank you once again, and we wish you a safe and pleasant journey!\n");
+            emailContent.append("Best regards,\nCarVoyage team");
 
             message.setText(emailContent.toString());
 
             mailSender.send(message);
 
-            System.out.println("Email s potvrdom uspješno poslan korisniku: " + customerEmail);
 
         } catch (Exception e) {
-            System.err.println("Greška prilikom slanja emaila: " + e.getMessage());
+            System.err.println("Error sending email: " + e.getMessage());
             e.printStackTrace();
         }
     }

@@ -58,7 +58,6 @@
                     sec:authorize="isAuthenticated()"
                   >
                     <span sec:authentication="name"></span>
-                    <!-- Ikona postavki (SVG) -->
                     <button
                       @click="showSettings = !showSettings"
                       class="ml-2 p-1 rounded"
@@ -88,8 +87,6 @@
                         class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                         >Edit Profile</a
                       >
-
-                      <!-- Dodajte dodatne opcije ovdje ako je potrebno -->
                     </div>
                   </span>
                 </div>
@@ -102,7 +99,6 @@
                   Logout
                 </a>
 
-                <!-- Prikaz opcija za prijavu i registraciju kada korisnik NIJE prijavljen -->
                 <a
                   th:href="@{/login}"
                   class="nav-link-2 w-full px-6 py-2 mr-0 transition-colors md:px-3 md:mr-2 lg:mr-3 md:w-auto"

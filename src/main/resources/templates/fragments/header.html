@@ -57,7 +57,6 @@
                     sec:authorize="isAuthenticated()"
                   >
                     <span sec:authentication="name"></span>
-                    <!-- Settings icon (gear) -->
                     <button
                       @click="showSettings = !showSettings"
                       class="ml-2 p-1 rounded"
@@ -76,7 +75,6 @@
                         />
                       </svg>
                     </button>
-                    <!-- Dropdown menu -->
                     <div
                       x-show="showSettings"
                       class="absolute right-0 w-48 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg"
@@ -87,7 +85,6 @@
                         class="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                         >Edit Profile</a
                       >
-                      <!-- Add more options here if needed -->
                     </div>
                   </span>
                 </div>

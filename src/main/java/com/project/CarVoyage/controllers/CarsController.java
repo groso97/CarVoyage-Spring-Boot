@@ -78,7 +78,7 @@ public class CarsController {
         LocalDate dropOffDate = (LocalDate) httpSession.getAttribute("dropOffDate");
     
         if (pickUpDate == null || dropOffDate == null) {
-            // Ako datumi nisu postavljeni, preusmjeri korisnika na početnu stranicu s porukom
+            // Ako datumi nisu postavljeni preusmjeri korisnika na početnu stranicu s porukom
             httpSession.setAttribute("infoMessage", "You must first select a location, pick-up date, and drop-off date.");
             return "redirect:/";
         }

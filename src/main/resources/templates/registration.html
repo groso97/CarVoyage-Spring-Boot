@@ -70,35 +70,37 @@
         <span class="font-medium" th:text="${successMessage}"></span>
       </div>
     </div>
-    <!-- Flash message for success -->
+
+    <!-- Flash info message -->
     <div
       th:if="${infoMessage}"
       x-data="{ show: true }"
       x-show="show"
-      x-init="setTimeout(() => show = false, 10000)"
+      x-init="setTimeout(() => show = false, 5000)"
       x-transition:leave="transition ease-out duration-1000"
       x-transition:leave-start="opacity-100"
       x-transition:leave-end="opacity-0"
-      class="absolute top-0 flex items-center w-full z-10 p-4 mb-4 text-sm text-[#1ECB15] border border-green-300 rounded-[30px] bg-green-50 mt-[4.8rem]"
+      class="absolute top-0 flex items-center w-full z-10 p-4 mb-4 text-sm text-blue-800 border border-blue-300 rounded-lg bg-blue-50 mt-[80px]"
       role="alert"
     >
       <svg
         class="flex-shrink-0 inline w-4 h-4 mr-3"
         xmlns="http://www.w3.org/2000/svg"
-        width="28"
-        height="28"
-        viewBox="0 0 1024 1024"
+        fill="currentColor"
+        viewBox="0 0 20 20"
       >
         <path
-          fill="currentColor"
-          d="M512 64a448 448 0 1 1 0 896a448 448 0 0 1 0-896m-55.808 536.384l-99.52-99.584a38.4 38.4 0 1 0-54.336 54.336l126.72 126.72a38.27 38.27 0 0 0 54.336 0l262.4-262.464a38.4 38.4 0 1 0-54.272-54.336z"
+          fill-rule="evenodd"
+          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-1 1v4a1 1 0 002 0v-4a1 1 0 00-1-1zm0 8a1 1 0 100-2 1 1 0 000 2z"
+          clip-rule="evenodd"
         />
       </svg>
-      <span class="sr-only">Success</span>
+      <span class="sr-only">Info</span>
       <div>
         <span class="font-medium" th:text="${infoMessage}"></span>
       </div>
     </div>
+
     <section
       class="flex-grow flex items-center justify-center mt-[10vh] mb-[10vh]"
     >

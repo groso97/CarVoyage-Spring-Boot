@@ -24,4 +24,6 @@ public interface CarRepository {
     List<Car> findBySeats(int seats);
 
     List<Car> findAvailableCars(int locationId, LocalDate pickUpDate, LocalDate dropOffDate);
+
+    Car findCarMakeAndModelById(int carId);
 }

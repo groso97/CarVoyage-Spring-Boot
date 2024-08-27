@@ -30,14 +30,12 @@ public class UserController {
 
     @GetMapping("/profile")
     public String viewProfile(Model model) {
-        // Dobivanje trenutno prijavljenog korisnika
         User currentUser = getCurrentlyLoggedInUser();
         
-        // Dodavanje korisnika i njegovih rezervacija u model
         model.addAttribute("user", currentUser);
         model.addAttribute("reservations", reservationRepository.getReservationsByUserId(currentUser.getUserId()));
         
-        return "profile"; // Pretpostavka da se šablon nalazi u src/main/resources/templates/profile.html
+        return "profile";
     }
     
 

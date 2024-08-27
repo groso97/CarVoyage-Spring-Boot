@@ -11,14 +11,14 @@ CREATE TABLE users (
 );
 
 CREATE TABLE locations(
-	location_id INT AUTO_INCREMENT PRIMARY KEY,
+    location_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50),
     address VARCHAR(50),
-    email VARCHAR (50,)
+    email VARCHAR(50),
     phone_number VARCHAR(50),
     image VARCHAR(255) NOT NULL
-    );
-    
+);
+
 CREATE TABLE cars (
     car_id INT AUTO_INCREMENT PRIMARY KEY,
     make VARCHAR(50) NOT NULL,
@@ -39,7 +39,6 @@ CREATE TABLE cars (
     FOREIGN KEY(location_id) REFERENCES locations(location_id)
 );
 
-
 CREATE TABLE reservations (
     reservation_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
@@ -49,8 +48,6 @@ CREATE TABLE reservations (
     total_amount DECIMAL(10, 2) NOT NULL,
     status ENUM('pending', 'confirmed') DEFAULT 'confirmed',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (car_id) REFERENCES cars(car_id)
 );
-
-

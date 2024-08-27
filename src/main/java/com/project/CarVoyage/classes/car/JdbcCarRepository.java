@@ -70,4 +70,15 @@ public class JdbcCarRepository implements CarRepository {
 
         return jdbcTemplate.query(sql, new CarRowMapper(), locationId, dateTo, dateFrom);
     }
+
+    @Override
+    public Car findCarMakeAndModelById(int carId) {
+        String sql = "SELECT make, model FROM cars WHERE car_id = ?";
+        return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
+            Car car = new Car();
+            car.setMake(rs.getString("make"));
+            car.setModel(rs.getString("model"));
+            return car;
+        }, carId);
+    }
 }
